@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf8">
+        <meta name="viewport" content="width-device-width, initial-scale=1.0">
+        <title>
+            Übung 1 Lösungen
+        </title>
+    </head>
+    <body>
+        <h1 align="center">Übung 1</h1>
+
+      <section>
+      <h4>Aufgabe 1.1: World Wide Web</h4>
+      <ol>
+          <li>Mit welchen fachlichen Argumenten wurde das WWW-Proposal von Tim Burners Lee abgelehnt?</li>
+          <li>Was sind die fachlichen Argumente, warum das WWW dennoch ein Erfolg wurde?</li>
+          <li>Was wäre der Preis für die garantierte Verhinderung von "broken links"?</li>
+      </ol>
+      <p><ins>Meine Lösung: </ins></p>
+      <ol>
+          <li>Die Wagheit wurde mit der Evolvierbarkeit verwechselt. Die Hypertext Community war der Meinung, bereits weiter in der Wissenschaft gewesen zu sein, dass WWW-Proposal würde demnach den Fortschritt zurück schmeissen, vor allem durch die möglichen "broken links".</li>
+          <br>
+          <li><ul>
+              <li>Die Technologien können sich unabhängig voneinander weiterentwickeln.</li>
+              <li>Offene Standards</li>
+              <li>Einfache Benutzeroberfläche</li>
+          </ul></li>
+          <br>
+          <li><ul>
+              <li>hohe kosten</li>
+              <li>überwachung und Datenschutz</li>
+          </ul></li>
+      </ol>
+      <hr>
+    </section>
+
+    <section>
+        <h4>Aufgabe 1.2: HTTP</h4>
+        <ol>
+            <li>Sie bekommen im Browser den HTTP Status Code 200. Was bedeutet das?</li>
+            <li>Sie bekommen im Browser den HTTP Status Code 301. Was hat das zu bedeuten?</li>
+            <li>Sie bekommen im Browser den HTTP Status Code 400. Was hat das zu bedeuten? Was können Sie dagegen tun?</li>
+            <li>Sie bekommen im Browser den HTTP Status Code 403. Was hat das zu bedeuten? Was können Sie dagegen tun?</li>
+            <li>In einer Webanwendung benötigen Sie eine OPTIONS-Anfrage, die die Optionen des Servers vor dem eigentlichen Zugriff erfragen soll. Aus Performancegründen soll die Abfrage aber cacheable sein. Wie könnten Sie dafür eine Lösung angehen?</li>
+        </ol>
+        <p><ins>Meine Lösung: </ins></p>
+        <table border="2"> <!--Tabelle iwann schöner machen-->
+            <tr>
+                <th><b>HTTP STATUS CODE</b></th>
+                <th><b>Bedeutung</b></th>
+                <th><b>Optionen</b></th>
+            </tr>
+            
+            <tr>
+                <td>200</td>
+                <td>OK (Aufruf/Anfrage wurde erfolgreich ausgeführt)</td>
+            </tr>
+            <tr>
+                <td>301</td>
+                <td>"Moved Permanently" (ehemalige URL wird zu einer neuen URL weiter geleitet, wenn zB URL nicht mehr existiert oder geändert wurde)</td>
+            </tr>
+            <tr>
+                <td>400</td>
+                <td>"Bad Request" (Anfrage wurde fehlerhaft aufgebaut, Verbindung mit Webserver wurde hergestellt, aber Webseite aufgrund eines Problems mit der Adresse nicht gefunden).</td>
+                <td>zB. Überprüfen der übermittelten URL, Browser-Cache löschen, Browser-Cookies löschen, Prüfen, ob Dateiupload Serverlimit überschreitet, DNS-Cache löschen, Browser Erweiterungen deaktivieren.</td>
+            </tr>
+            <tr>
+                <td>403</td>
+                <td>Browser hat keine Berechtigung auf die Website zuzugreifen.</td>
+                <td>Erweiterungen deaktivieren, Cache löschen Firewall deaktivieren</td>
+            </tr>
+        </table>
+        <p> 5. Man kann das HTTP-Caching verwenden oder man kann eine GET Request senden. </p>
+        <hr>
+    </section>
+
+    <section>
+        <!-- schöner machen!-->
+        <h4>Aufgabe 1.3: Quiz zu HTML</h4>
+        <p><b>Frage 1/6: Was ist HTML?</b></p>
+        <p>&#9745; Eine Auszeichnungssprache</p>
+        <p><b>Frage 2/6: Wofür steht HTML?</b></p>
+        <p>&#9745; Hypertext Markup Language</p>
+        <p><b>Frage 3/6: Wofür wird HTML eingesetzt?</b></p>
+        <p>&#9745; für die Strukturierung digitaler Dokumente</p>
+        <p><b>Frage 4/6: Wer hat HTML erfunden?</b></p>
+        <p>&#9745; Tim Berners-Lee</p>
+        <p><b>Frage 5/6: Zu welchem ursrpünglichen Zweck wurde HTML erfunden?</b></p>
+        <p>&#9745; für den Austausch wissenshaftlicher Publikationen</p>
+        <p><b>Frage 6/6: Wer arbeitet alles an der Weiterentwicklung von HTML?</b></p>
+        <p>&#9745; die Web Hypertext Application Technology Working Group (WHATWG)</p>
+        <p>&#9745; das World Wide Web Consortium (W3C)</p>
+        <hr>
+    </section>
+
+    <section>
+        <h4>Aufgabe 1.4: Quiz zu HTML-Tags</h4>
+        <p><b>Frage 1/6: Was ist ein HTML-Tag?</b></p>
+        <p>&#9745; Eine Auszeichnungselement</p>
+        <p><b>Frage 2/6: Wofür nutzt man einen HTML-Tag?</b></p>
+        <p>&#9745; Zur Strukturierung von Webseiteninhalten</p>
+        <p>&#9745; Zur Einbettung weiterer Inhalte, die über Text hinausgehen</p>
+        <p><b>Frage 3/6: Woraus besteht ein HTML-Tag und wie setzt man ihn ein?</b></p>
+        <p>&#9745; &lt;p&gt;Paragraph&lt;/p&gt;</p>
+        <p>&#9745; &lt;h2&gt;Überschrift&lt;/h2&gt;</p>
+        <p>&#9745; Hallo Welt! &lt;br&gt; Willkommen.</p>
+        <p><b>Frage 4/6: Was ist ein HTML- Attribut?</b></p>
+        <p>&#9745; eine Eigenschaft</p>
+        <p><b>Frage 5/6: Wofür nutzt man ein HTML-Attribut?</b></p>
+        <p>&#9745; zur Beschreibung zusätzlicher Eigenschaften von HTML-Tags</p>
+        <p><b>Frage 6/6: Wie schreibt man einen Kommentar in HTML?</b></p>
+        <p>&#9745; &lt;!--Kommentar--&gt;</p>
+        <hr>
+    </section>
+
+    <section>
+        <!-- vllt geht das effizienter? und schöner!-->
+        <h4> Aufgabe 1.5: Lückentext zu HTML</h4>
+        <p>Alle <mark>markierten</mark> Bereiche stellen die Lösung dar</p>
+        <pre>
+        <mark>&lt;!DOCTYPE html&gt;</mark>
+        <mark>&lt;html&gt;</mark>
+        <mark>&lt;head&gt;</mark>
+        <mark>&lt;title&gt;</mark> Titel der Webseite <mark>&lt;/title&gt;</mark>
+        <mark>&lt;/head&gt;</mark>
+        <mark>&lt;body&gt;</mark>
+        <mark>&lt;h1&gt;</mark> Anwendung von HTML-Tags<mark>&lt;/h1&gt;</mark>
+        <mark>&lt;h2&gt;</mark>Motivation<mark>&lt;/h2&gt;</mark>
+        <mark>&lt;p&gt;</mark>
+        Dieser Lückentext unterstützt Sie dabei selbst einzuschätzen, ob Sie in der Lage sind das HTML-Grundgerüst und die HTML-Tags zum Markieren von Überschriften, Paragraphen und HTML-Kommentaren einzusetzen.
+        <mark>&lt;/p&gt;</mark>
+        <mark>&lt;!--&gt;</mark>
+        <mark>&lt;h2&gt;</mark>Auskommentierung von HTML-Code<mark>&lt;/h2&gt;</mark>
+        <mark>&lt;p&gt;</mark>Dieser Abschnitt wurde auskommentiert.<mark>&lt;/p&gt;</mark>
+        <mark>--&gt;</mark>
+        <mark>&lt;/body&gt;</mark>
+        <mark>&lt;/html&gt;</mark>
+        </pre>
+        <hr>
+    </section>
+
+    <section>
+        <h4>Aufgabe 1.6: HTML-Literatur lesen und Fragen beantworten</h4>
+        <p>Arbeiten sie eine HTML-Tutorial durch (W3Schools oder selfhtml) und beantworten Sie dazu folgende Fragen:</p>
+        <ol>
+            <li>Was ist HTML?</li>
+            <li>Wie kann man eine geschachtelte geordnete Liste der Tiefe 3 erzeugen?</li>
+            <li>Wie ist eine HTML-Tabelle aufgebaut?</li>
+            <li>Welche Konventionen sollte man bei Pfaden und Dateinamen beachten?</li>
+            <li>Wie baut man in HTML ein Menü?</li>
+            <li>Welche Attribute sollte man bei Bildern wie verwenden?</li>
+        </ol>
+        <p><ins>Meine Lösung: </ins></p>
+        <ol>
+            <li>Eine Auszeichnungssprache</li>
+            <li>nested list mit geschachtelten &lt;ul&gt; tags</li>
+            <li>&lt;table&gt;, zeilen haben den tag &lt;tr&gt;, die spalten &lt;th&gt;, zeilen werden mit &lt;td&gt; gefüllt</li>
+            <li>kleinschreibung, keine leerzeichen, nur buchstaben, zahlen und binde/-unterstriche, pfade im rootverzeichnis beginnen mit "/", pfade im jetzigen verzeichnis mit "./"</li>
+            <li>&lt;menu&gt;</li>
+            <li>src, alt und width/heigth. src beschreibt den Dateipfad. alt ist ein Alternativnamen für das Bild, falls es nicht geladen wird. height und width sind die Höhe und Breite des Bildes in Pixel.</li>
+        </ol>
+        <hr>
+    </section>
+
+    <section>
+        <h4>Aufgabe 1.7: HTML-Wireframe</h4>
+        <p>Die Aufgabe bestand darin, ein gegebenes Wireframe exakt nachzubauen, ohne CSS, nur mit HTML-Tags</p>
+        <p>Hier ein kleiner Ausschnitt:<a href="ue1wireframe.html">Um zum Wireframe zu gelangen klicken Sie hier</a> </p>
+        <iframe src="ue1wireframe.html" title="Kleiner Ausschnitt"></iframe>
+
+        <p><ins>Meine Code-Lösung um das Wireframe exakt nachzubauen: </ins></p>
+        <pre>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;
+            übung 1 Aufgabe 1.7 HTML-Wireframe
+        &lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;h1&gt;übung 1.2: Inventors of the Web&lt;/h1&gt;
+        &lt;ul&gt;
+            &lt;li&gt;&lt;mark&gt;&lt;ins&gt;&lt;b&gt;Tim Berners-Lee:&lt;/b&gt;&lt;/ins&gt;&lt;/mark&gt; WWW, HTTP, HTML, URI&lt;/li&gt;
+            &lt;li&gt;&lt;b&gt;Hakom Lie and Bert Bos:&lt;/b&gt; CSS&lt;/li&gt;
+            &lt;li&gt;&lt;b&gt;Brendan Eich:&lt;/b&gt; JavaScript&lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;hr&gt;
+        &lt;h2&gt;Inventors of the WWW&lt;/h2&gt;
+        &lt;table border="10"&gt;
+            &lt;tr&gt;
+                &lt;th colspan="4"&gt;Inventors of the WWW&lt;/th&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+                &lt;th&gt;&lt;b&gt;WWW&lt;/b&gt;&lt;/th&gt;
+                &lt;th&gt;&lt;b&gt;HTML&lt;/b&gt;&lt;/th&gt;
+                &lt;th&gt;&lt;b&gt;CSS&lt;/b&gt;&lt;/th&gt;
+                &lt;th&gt;&lt;b&gt;JavaScript&lt;/b&gt;&lt;/th&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+                &lt;td&gt;&lt;mark&gt;Tim Berners-Lee&lt;/mark&gt;&lt;/td&gt;
+                &lt;td&gt;&lt;mark&gt;Tim Berners-Lee&lt;/mark&gt;&lt;/td&gt;
+                &lt;td&gt;Hakom Lie and Bert Bos&lt;/td&gt;
+                &lt;td&gt;Brendan Eich&lt;/td&gt;
+            &lt;/tr&gt;
+        &lt;/table&gt;
+        &lt;br&gt;
+        &lt;hr&gt;
+        
+        &lt;table&gt;
+            &lt;tr&gt;
+                &lt;th align="center" colspan="3"&gt;&lt;b&gt;Inventors of the WWW&lt;/b&gt;&lt;/th&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+                &lt;th colspan="3"&gt;&lt;hr&gt;&lt;/th&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+                &lt;th&gt;HTML&lt;/th&gt;
+                &lt;th&gt;|&lt;/th&gt;
+                &lt;th&gt;JavaScript&lt;/th&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+                &lt;td&gt;&lt;img src="https://kaul.inf.h-brs.de/ccm/we/ws23/resources/assets/tbl.jpg" alt="Tim Berners-Lee" width="auto" height="150"&gt;&lt;/td&gt;
+                &lt;td&gt;&lt;b&gt;|&lt;/b&gt;&lt;/td&gt;
+                &lt;td&gt;&lt;img src="https://kaul.inf.h-brs.de/ccm/we/ws23/resources/assets/eich.jpg" alt="Brendan Eich" width="auto" height="150"&gt;&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+                &lt;td&gt;&lt;mark&gt;Tim Berners-Lee&lt;/mark&gt;&lt;/td&gt;
+                &lt;td&gt;|&lt;/td&gt;
+                &lt;td&gt;Brendan Eich&lt;/td&gt;
+            &lt;/tr&gt;
+        &lt;/table&gt;
+        &lt;br&gt;
+        &lt;hr&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+        </pre>
+    </section>
+    </body>
+    </html>
