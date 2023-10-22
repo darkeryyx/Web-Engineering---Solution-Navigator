@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf8">
+        <meta name="viewport" content="width-device-width, initial-scale=1.0">
+        <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+        <title>
+            Übung 2 Aufgabe 2.4
+        </title>
+    
+        <style>
+            body{
+                background-color: #a9d7d1;
+                font-family:"Roboto";
+                font-size:14px;
+                font-weight: bold;
+            }
+            
+            form{
+                padding: 20px 60px 10px 70px;
+                margin-left: 10px;
+                margin-right: 10px;
+                background-color: snow;
+                border-radius: 10px 10px 0 0; /* rundet oberen ecken ab */
+            }
+
+            .form-table tr{
+               height:38px;
+            }
+
+            .form-table tr td:nth-child(2){
+                padding-left: 20px;
+            }
+
+            tr.custom td {
+                padding-top: 5px; 
+                padding-bottom: 5px
+            }
+
+            tr.like td {
+                padding-top: 15px; 
+                padding-bottom: 5px
+            }
+
+            select{
+                height: 32px;
+                margin-bottom:14px;
+                font-size: 12px;
+               
+            }
+           input[type="checkbox"]{
+                
+                margin-bottom: 10px;
+            }
+        
+		    input[type="radio"]{
+                margin-bottom: 10px;
+   
+            }
+            input[type="text"] {
+                 width: 85%;
+            }
+
+            input[type="email"] {
+                 width: 85%;
+            }
+
+            ::placeholder{
+                font-size: 12px;
+            }
+
+            #reco label, #imp label{
+                position: relative;
+                right: 8px; 
+                bottom: 1px;
+            }
+
+            </style>
+          </head>  
+            
+          <body> 
+            <h1 align="center">Survey Form</h1>
+
+            <form>        
+            <p align="center">Let us know how we can improve freeCodeCamp</p>
+            
+            <table class="form-table" align="center">
+                        <tr>
+                        <td align="right"><label for="name">* Name:</label></td>
+                        <td><input type="text" id="name" name="name" required placeholder="Enter your name"></td>
+                        </tr> 
+                        
+                        <tr>
+                        <td align="right"><label for="email">* Email:</label></td>
+                        <td><input type="email" id="email" name="email" required placeholder="Enter your Email">
+                        </td>
+                        </tr>
+
+                        <tr>
+                        <td align="right"><label for="age">* Age:</label></td>
+                        <td><input type="text" id="age" name="age" required placeholder="Age">
+                        </td>
+                        </tr>
+                        
+                        
+                        <tr class="custom">
+                        <td align="right" style="vertical-align: top;"><label for="role">Which option best descripes your current role?</label></td>
+                        <td><select id="role" name="role">
+                            <option value="student">Student</option>
+                            <option value="lehrer">Lehrer</option>
+                        </select></td>
+                        </tr>
+                       
+
+                        <tr>
+                        <td align="right"  style="vertical-align: top;" ><label for="reco">How likely is that you would recommend freeCodeCamp to a friend?</label> </td>
+                        <td id="reco">
+                        <input type="radio" id="def" name="recommendation" value="definitely">
+                        <label for="def">Definitely</label><br>
+            
+                        <input type="radio" id="maybe" name="recommendation" value="maybe">
+                        <label for="maybe">Maybe</label><br>
+            
+                        <input type="radio" id="nots" name="recommendation" value="nots">
+                        <label for="nots">Not Sure</label><br>
+                        </td>
+                        </tr> 
+                        
+
+                        <tr class="like">
+                        <td align="right"   style="vertical-align: top;" ><label for="liked">What do you like most in FCC?</label></td>
+                        <td><select id="liked" name="liked" >
+                            <option value="" disabled selected>Select an option</option>
+                            <option value="First">Erstes</option>
+                            <option value="Second">Zweites</option>
+                            <option value="other">Sonstiges</option>
+                        </select></td>
+                        </tr>
+                        
+
+                        <tr>
+                        <td align="right"  style="vertical-align: top;"><label for="imp">Things that should be improved in the future (check all that apply):</label></td>
+                        <td id="imp">  
+                        <input type="checkbox" id="fed"  name="improvements[]" value="FEP">
+                        <label for="fed">Front-end Projects</label><br>
+            
+                        <input type="checkbox" id="bed"name="improvements[]"  value="BEP">
+                        <label for="bed">Back-end Projects</label><br>
+            
+                        <input type="checkbox" id="vis"name="improvements[]"  value="DaVIS">
+                        <label for="vis">Data Visualization</label><br>
+                        </td>
+                        </tr> 
+               
+                        </table>   	
+              </form>     
+
+
+      </body>
+      </html>     
