@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--Landing Page responsive mit grid fertig!
+        Die Formatierung des Bildes, der Texte etc entspricht nicht exakt dem Wireframe wie in der Aufgabe,
+        aktuell soll dieser Code nur das funktionierende responsive grid zeigen
+        optisch wird das Wireframe eventuell noch nachgebessert-->
+        <meta charset="utf8">
+        <meta name="viewport" content="width-device-width, initial-scale=1.0">
+        <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+        <title>
+            Übung 3 Aufgabe 3.1
+        </title>
+    <style>
+html{
+    height: 100%;
+}
+body{
+    display: grid;
+    height: 100%;
+    grid-template-columns: 25% 25% 25% 25%;
+    grid-template-rows: 5% 10% 70% 20%;
+}
+.pLeft{
+    background-color:blanchedalmond;
+    grid-column-start: 1; 
+    grid-column-end: 3;   
+    grid-row:3;
+}
+.bot{
+    background-color: rgb(0, 0, 0);
+    color:antiquewhite;
+    grid-column-start: 1; 
+    grid-column-end: 5;   
+    grid-row:4;
+    text-align: center;
+}
+.pRight{
+    background-color: blanchedalmond;
+    grid-column-start: 3;
+    grid-column-end: 5;    
+    grid-row:3;
+    text-align: center;
+}
+.head1{
+  grid-column: 1/4;
+  grid-row:1;
+}
+.head2{
+  grid-column: 2/4;
+  grid-row:1;
+}
+.head3{
+  grid-column: 3/4;
+  grid-row:1;
+}
+.head4{
+  grid-column: 4/4;
+  grid-row:1;
+}
+
+.head1, .head2, .head3, .head4{
+    background-color: #491c1c;
+    color:antiquewhite;
+
+}
+
+.second{
+    background-color:blanchedalmond;
+    color:rgb(0, 0, 0);
+    grid-column-start: 1; 
+    grid-column-end: 5;   
+    grid-row:2;
+    text-align: center;
+    font-size: 25px;
+}
+
+@media screen and (max-width: 820px) {
+body{
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 5% 5% 10% 60% 20%;
+}
+.pLeft{
+    grid-column: 1/2;
+    grid-row:4
+}
+.pRight{
+    grid-column: 2/2;
+    grid-row:4
+}
+.head1{
+  grid-column: 1/2;
+  grid-row:1;
+}
+.head2{
+  grid-column: 2/2;
+  grid-row:1;
+}
+.head3{
+  grid-column: 1/2;
+  grid-row:2;
+}
+.head4{
+  grid-column: 2/2;
+  grid-row:2;
+}
+.bot{
+    grid-column-start: 1; 
+    grid-column-end: 3;   
+    grid-row:5;
+}
+.second{
+    grid-column-start: 1; 
+    grid-column-end: 3;   
+    grid-row:3;
+}
+}
+
+@media screen and (max-width: 640px) {
+body{
+    grid-template-columns: 100%;
+    grid-template-rows: 5% 5% 5% 5% 10% 40% 20% 10%;
+}
+.head1{
+  grid-row:1;
+  grid-column: 1;
+}
+.head2{
+  grid-row:2;
+  grid-column: 1;
+}
+.head3{
+  grid-row:3;
+  grid-column: 1;
+}
+.head4{
+  grid-row:4;
+  grid-column: 1;
+}
+.second{
+    grid-row:5;
+    grid-column: 1;
+}
+.pLeft{
+    grid-row:6;
+    grid-column: 1;
+}
+.pRight{
+    grid-row:7;
+    grid-column: 1;
+}
+
+.bot{  
+    grid-row:8;
+    grid-column: 1;
+}
+}
+</style>
+</head>
+
+    <body>
+    
+        <div class="head1">
+            <header><b>The book series</b></header>
+        </div>  
+        <div class="head2">
+            <header><b>Testimonials</b></header>
+        </div>
+        <div class="head3">
+            <header><b>The Author</b></header>
+        </div>
+        <div class="head4">
+            <header><b>Free resources</b></header>
+        </div>
+        <div class="second">
+            <nav><b>You don't know Javascript</b></nav>
+        </div>  
+        <div class="pLeft">
+            <nav ><img src="https://kaul.inf.h-brs.de/ccm/we/ws23/resources/assets/landing-img.png" alt="JS Complete Series" width="auto" height="500"></nav>
+        </div>
+
+        <div class="pRight">
+            <p>Don't just drift through Javascript.</p><br>
+            <p>Understand how Javascript works</p><br>
+            <p>Start your journey through the bumpy side of Javascript</p>
+        </div>
+
+        <div class="bot">
+            <p>The first ebook in the book series ist absolutely free.</p>
+        </div>
+        
+    </body>
+</html>
+
