@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Übung 5</title>
+    <style>
+        li {
+            margin-bottom: 5px; /*abstand zw rednern*/
+        }
+        .timer-container {
+            display: inline-block; /*timer wird neben redner angezeigt*/
+            margin-left: 5px;
+        }
+        .timer-container div {
+            display: inline-block; /*button neben zeit*/
+            margin-right: 5px;
+        }
+    </style>
+  </head>
+
+  <body>
+    <h1 align="center">Übung 5</h1>
+    <h4> Aufgabe 5.2: Rednerliste mit Zeitmessung</h4>
+    <p>Implementieren Sie die interaktive Anwendung "Rednerliste mit Zeitmessung" selbstständig in JavaScript 
+      durch Nutzung der DOM-API und der Timer-Funktionen. Neue Redner sollen auf Knopfdruck hinzugefügt werden können. 
+      Deren Uhr wird dann sofort automatisch gestartet und alle anderen Uhren angehalten. Bei jedem Redner soll die individuelle, 
+      gemessene Redezeit sekundengenau angezeigt werden. Für jeden Redner soll es einen eigenen Start-/Stopp-Button geben. 
+      Es soll immer nur eine Uhr laufen. Angezeigt werden sollen die bisherigen Summenzeiten aller Redebeiträge der betreffenden Person. 
+      Suchen Sie eine möglichst kurze und elegante Lösung. Achten Sie gleichzeitig auf gute Usability:
+      z.B. wenn die Eingabe mit einem Return beendet wird, soll der Klick auf den Button nicht mehr erforderlich sein.</p>
+    
+    <p><ins>Meine Lösung: </ins></p>
+    <hr>
+
+    <h1>Rednerliste</h1>
+
+    <label for="redner">Neuer Redner:</label>
+    <input type="text" id="redner" name="redner"  onkeydown="if(event.keyCode==13) neuerRedner()">
+    <button type="button" onclick="neuerRedner()">Hinzufügen</button>
+
+    <ul id="rednerListe"></ul>
+
+    <script>
+      function neuerRedner() {
+        stoppeAndereTimer();
+        const neuerR = document.createElement("li"); //erzeugt neues listenelement
+        const neuerRNode = document.createTextNode(document.getElementById("redner").value); //text wird festgelegt
+        neuerR.appendChild(neuerRNode);//text wird child von neuem listenelement
+
+        const liste = document.getElementById("rednerListe"); //rednerListe also ul wird geholt 
+        liste.appendChild(neuerR);//neues listenelement wird der rednerliste hinzugefügn
+        
+        const timerContainer = document.createElement("div"); //container für timer
+        timerContainer.className ="timer-container";
+        neuerR.appendChild(timerContainer); //timerCOntainerchild vom listenelement
+
+        const zeit = document.createElement("div"); //neuer timer erzeugt
+        zeit.textContent = "00:00:00"; //erster inhalte
+        timerContainer.appendChild(zeit); // zeit jz child von timer container
+
+        const sButton = document.createElement("button"); //button erstellt
+        sButton.appendChild(document.createTextNode("Stop!")); //text vom button
+        neuerR.appendChild(sButton); //button gehört jz auch zum listenelement
+        
+        zeit.isRunning=true;
+        zeit.seconds=0;
+        zeit.timerInterval;
+        zeit.button=sButton;
+
+        //erstmal alle anderen timer stoppen
+        function stoppeAndereTimer() {
+          const alleTimer = Array.from(document.getElementsByTagName("div"));
+          alleTimer.forEach(all);
+          
+          function all(tim) {
+            if (tim.isRunning) {
+                clearInterval(tim.timerInterval);
+                tim.isRunning = false;
+                tim.button.innerText = "Start!"; 
+                }
+          }
+        }         
+
+        document.getElementById("redner").value = ""; //leert textfeld nach enter taste für bessere usability
+
+        //timer läuft sofort nach hinzufügen des redners
+        zeit.timerInterval = setInterval(function () { //alle 1000ms wird sekunden um 1 erhöht
+              zeit.seconds++;
+              zeit.textContent = formatTime(zeit.seconds);
+            }, 1000);
+
+        function formatTime(time) {
+          let hours = Math.floor(time / 3600);
+          let minutes = Math.floor((time % 3600) / 60);
+          let seconds = time % 60;
+
+          return (
+            padZero(hours) + ":" + padZero(minutes) + ":" + padZero(seconds)
+          );
+        }
+
+        function padZero(num) {
+          return num < 10 ? "0" + num : num;
+        }
+
+
+        //timer dann durchs klicken bestimmt
+        sButton.onclick = function () {
+          if (zeit.isRunning) {
+            clearInterval(zeit.timerInterval);
+            sButton.innerText = "Start!";
+
+          } else {
+            stoppeAndereTimer();
+            zeit.timerInterval = setInterval(function () {
+            zeit.seconds++;
+            zeit.textContent = formatTime(zeit.seconds);
+            }, 1000);
+            sButton.innerText = "Stop!";         
+          }
+          zeit.isRunning = !zeit.isRunning;
+        }
+      }
+    </script>
+  </body>
+</html>
