@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Klammerpaar-Prüfer</title>
+    <style>
+      .error {
+        border: 1px solid red;
+        background-color: rgb(246, 123, 123);
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <h1>Klammerpaar-Prüfer</h1>
+
+    <label for="klammern">Geben Sie Ihre zu überprüfende Zeichenkette ein:</label>
+    <br><br>
+    <input type="text" id="klammern">
+
+    <script>
+    /*  const eingabe = document.getElementById("klammern");
+      eingabe.addEventListener("input", checkKlammern);*/
+
+      function checkKlammern(input) {
+        const stack = [];
+        const offeneKlammern = ['(', '{', '['];
+        const schließKlammern = [')', '}', ']'];
+        const map =new Map([[')','('], ['}','{'], [']','[']]); //um zu vergleichen ob die schließ. klammern den öffnenden entsprechen
+
+    //    eingabe.classList.remove('error'); // wieder weiss färben bei erneuter eingabe
+
+        for (let i = 0; i < input.length; i++) {
+          if (offeneKlammern.includes(input.charAt(i))) {
+            stack.push(input.charAt(i));
+
+          } else if (schließKlammern.includes(input.charAt(i))) {
+
+            if (stack.pop() !== map.get(input.charAt(i))) {              
+              return false;// schleifenabbruch bei falscher klammerung
+            } 
+
+          } else {
+            //alle anderen zeichen werden geskipped
+          }
+        }
+        return stack.length===0; //zum überprüfen ob noch offene klammern übrig bleiben
+    }
+
+    const eingabe = document.getElementById("klammern");
+      eingabe.addEventListener("input", function() {
+        eingabe.classList.remove('error'); //bei jeder neuen eingabe feld erstma wieder weiss färben
+        const isValid = checkKlammern(eingabe.value);
+
+        if (!isValid) {
+          eingabe.classList.add('error');
+        }
+      });
+
+    // testfälle
+    console.assert(checkKlammern("()") === true, "Test Case 1 Failed");
+    console.assert(checkKlammern("{[()]}") ===true, "Test Case 2 Failed");
+    console.assert(checkKlammern("{[()]") ===false, "Test Case 3 Failed");
+    </script>
+  </body>
+</html>
