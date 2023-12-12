@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Übung 8 Aufgabe 8.2</title>
+</head>
+
+<body>
+  <div id="output"></div>
+</body>
+
+  <script>
+    async function fetchData(datei) {
+      try {
+        const response = await fetch(datei);
+
+        if (!response.ok) {
+          throw new Error(`Fetch fehlgeschlagen ${datei}`);
+        }
+
+        return await response.text();
+      } catch (error) {
+        throw error;
+      }
+    }
+
+    async function zsmfuegen(dA, dB) {
+      const outputDiv = document.getElementById('output');
+
+      try {
+        // Fetch both files in parallel using async/await
+        const inhaltA = await fetchData(dA);
+        const inhaltB = await fetchData(dB);
+
+        const zA = inhaltA.split('\n');
+        const zB = inhaltB.split('\n');
+
+        // Concatenate lines and display
+        zA.forEach((a, index) => {
+          const b = zB[index] || ''; // Handle uneven line counts
+          const zsm = a + ' ' + b;
+          const elem = document.createElement('p');
+          elem.textContent = zsm;
+          outputDiv.appendChild(elem);
+        });
+      } catch (error) {
+        console.error(error.message);
+      }
+    }
+
+    zsmfuegen('http://localhost:8000/A.txt', 'http://localhost:8000/B.txt');
+  </script>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf8">
+        <meta name="viewport" content="width-device-width, initial-scale=1.0">
+        <title>
+            Übung 8, Aufgabe 3
+        </title>
+        <style>
+            body {
+                display: flex;
+                flex-direction: column;
+                margin: 0;
+                background-color: rgb(223, 189, 255);
+            }
+    
+            .menu {
+                display: flex;
+                justify-content: space-around;
+                padding: 20px;
+            }
+    
+            #unterthemen {
+                padding: 20px;
+            }
+    
+            #content {
+                padding: 100px;
+        
+            }
+    
+            #quellen {
+                padding: 20px;
+            }
+        </style>
+    </head>
+
+    <body>
+      <!-- <h1 align="center">WWW-Navigator</h1>-->
+        <!--head-->
+        <div class = "menu" style="background-color: rgb(223, 189, 255);">
+        <button type="button" onclick="laden('html')">HTML</button>
+        <button type="button" onclick="laden('css')">CSS</button>
+        <button type="button" onclick="laden('javascript')">JavaScript</button>
+        </div>
+        
+        <!--links-->
+        <div id = "unterthemen" style="background-color: rgb(209, 131, 208);"> </div>
+
+        <!--mitte-->
+        <div id="content" style="background-color: rgb(252, 255, 165);"></div>
+
+        <!--rechts-->
+        <div id="quellen" style="background-color: rgb(218, 143, 229);"></div>
+
+    </body>
+    <script>
+
+        let data;
+        holen();
+        async function holen(){
+             request= await fetch('ue8_3.json').catch(console.error);
+             data= await request.json();
+        }
+       
+        async function laden(thema){
+            document.getElementById("unterthemen").replaceChildren(); //löscht bisherige unterthemen
+            document.getElementById("content").innerText=''; //removed aktuellen angezeigten text
+            document.getElementById("quellen").innerText='';
+
+            for(const key in data[thema]){ //für alles keys in  html zb
+                const unter = document.createElement("button"); //neuer button für diesen key
+                unter.textContent=key; //text wird festgelegt
+                unter.onclick=function(){anzeigen(unter, thema)};
+
+                const liste = document.getElementById("unterthemen"); 
+                liste.appendChild(unter);//neue unterthemen werden hinzugefügt
+            }
+
+            document.querySelector("button").onclick;
+            console.log(data);
+            console.log(data[thema]);
+
+        }
+        function anzeigen(unter, thema){
+  
+        //erstmal inhalt bzw text in der mitte anzeigen
+        let inhalt=unter.textContent; //headings
+    
+        document.getElementById("content").innerText= data[thema][inhalt].content; //.content gibt dann den text von headings und content weils in der json datei content heißt
+        
+        //jz rechts die quellen
+        document.getElementById("quellen").innerText=''; 
+        let quellen=data[thema][inhalt].references;
+
+        quellen.forEach(element => {
+            document.getElementById("quellen").innerText+=element +"\n";
+        });
+
+
+
+        }
+    </script>
+</html>
+        
+
+    
