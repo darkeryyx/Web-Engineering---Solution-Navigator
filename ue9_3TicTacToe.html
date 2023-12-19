@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Übung 9 Aufgabe 3-TicTacToe</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            background-color: rgb(58, 0, 67);
+        }
+
+        svg {
+            width: 300px;
+            height: 300px;
+            fill: rgb(197, 173, 238);
+        }
+
+        .zelle {
+            cursor: pointer;
+        }
+
+        rect:hover{
+            background-color: rgb(47, 0, 255);
+        }
+        .anzeige {
+            font-size: 18px;
+            margin-top: 10px;
+            background-color: rgb(197, 173, 238);
+        }
+        button {
+            background-color: #ffffb0;
+            color: rgb(0, 0, 0);
+            padding: 10px 20px;
+            margin-top: 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #b9b542;
+        }
+    </style>
+</head>
+<body>
+    <svg id="board" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+        <rect x="0" y="0" width="100" height="100" class="zelle" onclick="setzen(0, 0)" stroke="#000" stroke-width="2"/>
+        <rect x="100" y="0" width="100" height="100" class="zelle" onclick="setzen(0, 1)" stroke="#000" stroke-width="2"/>
+        <rect x="200" y="0" width="100" height="100" class="zelle" onclick="setzen(0, 2)" stroke="#000" stroke-width="2"/>
+        <rect x="0" y="100" width="100" height="100" class="zelle" onclick="setzen(1, 0)" stroke="#000" stroke-width="2"/>
+        <rect x="100" y="100" width="100" height="100" class="zelle" onclick="setzen(1, 1)" stroke="#000" stroke-width="2"/>
+        <rect x="200" y="100" width="100" height="100" class="zelle" onclick="setzen(1, 2)" stroke="#000" stroke-width="2"/>
+        <rect x="0" y="200" width="100" height="100" class="zelle" onclick="setzen(2, 0)" stroke="#000" stroke-width="2"/>
+        <rect x="100" y="200" width="100" height="100" class="zelle" onclick="setzen(2, 1)" stroke="#000" stroke-width="2"/>
+        <rect x="200" y="200" width="100" height="100" class="zelle" onclick="setzen(2, 2)" stroke="#000" stroke-width="2"/>
+    </svg>
+    
+
+<div class="anzeige" id="anzeige"></div> <!--zeigt an wer dran ist und und ergebnis-->
+<button onclick="neustarten()">Neustarten</button>
+
+<script>
+    let aktuellerSpieler = 'X';
+    let board = [
+        ['', '', ''],
+        ['', '', ''],
+        ['', '', '']
+    ];
+    let spielAktiv = true;
+    document.getElementById('anzeige').innerText = `${aktuellerSpieler} ist dran!`;
+
+    function setzen(row, col) {
+        if (spielAktiv && board[row][col] === '') {
+            board[row][col] = aktuellerSpieler;
+            boardAnlegen();
+            if (pruefGewinner()) {
+                document.getElementById('anzeige').innerText = `${aktuellerSpieler} hat gewonnen!`;
+                document.getElementById('anzeige').style.color='red';
+                document.getElementById('anzeige').style.fontSize='50px';
+                spielAktiv = false;
+            } else if (boardVoll()) {
+                document.getElementById('anzeige').innerText = 'Unentschieden!';
+                document.getElementById('anzeige').style.color='red';
+                document.getElementById('anzeige').style.fontSize='50px';
+                spielAktiv = false;
+            } else {
+                aktuellerSpieler = aktuellerSpieler === 'X' ? 'O' : 'X';
+                document.getElementById('anzeige').innerText = `${aktuellerSpieler} ist dran!`;
+            }
+        }
+    }
+
+    function boardAnlegen() {
+        const svg = document.getElementById('board');
+        for (let row = 0; row < 3; row++) {
+            for (let col = 0; col < 3; col++) {
+                const zelle = board[row][col];
+                if (zelle !== '') {
+                    const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+                    text.setAttribute('x', col * 100 + 50);
+                    text.setAttribute('y', row * 100 + 60);
+                    text.setAttribute('font-size', '60');
+                    text.setAttribute('text-anchor', 'middle');
+                    text.setAttribute('dominant-baseline', 'middle');
+                    text.setAttribute('fill', zelle === 'X' ? 'rgb(255, 0, 149)' : 'rgb(153, 0, 255)'); 
+                    text.textContent = zelle;
+                    svg.appendChild(text);
+                    
+                }
+            }
+        }
+    }
+
+    function pruefGewinner() {
+        // zeilen
+        for (let i = 0; i < 3; i++) {
+            if (board[i][0] !== '' && board[i][0] === board[i][1] && board[i][0] === board[i][2]) {
+                return true;
+            }
+        }
+        // spalten
+        for (let i = 0; i < 3; i++) {
+            if (board[0][i] !== '' && board[0][i] === board[1][i] && board[0][i] === board[2][i]) {
+                return true;
+            }
+        }
+        // diagonale
+        if (board[0][0] !== '' && board[0][0] === board[1][1] && board[0][0] === board[2][2]) {
+            return true;
+        }
+
+        if (board[0][2] !== '' && board[0][2] === board[1][1] && board[0][2] === board[2][0]) {
+            return true;
+        }
+
+        return false;
+    }
+
+    function boardVoll() {
+        for (let row = 0; row < 3; row++) {
+            for (let col = 0; col < 3; col++) {
+                if (board[row][col] === '') {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    //hier für reload entschieden da "kleines" script, eventuell überarbeiten, so das kein reload stattfindet
+    function neustarten() {
+        location.reload();
+    }
+</script>
+</body>
+</html>

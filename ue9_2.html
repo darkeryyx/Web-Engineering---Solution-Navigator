@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<!--TODO BALKENANIMATION NOCH NICHT FERTIG-->
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Übung 9 Aufgabe 2</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding-left: 10px;
+        }
+
+        .chart {
+            margin-bottom: 20px;
+        }
+
+        .bar {
+            transition: fill 0.3s ease, opacity 0.3s ease;
+        }
+
+        .bar:hover {
+            fill: rgb(255, 0, 183);
+        }
+
+        .axis text {
+            font-size: 10px;
+        }
+
+        .tooltip {
+            position: absolute;
+            background: #f0f0f0;
+            padding: 5px;
+            border: 1px solid #ccc;
+            display: none;
+            z-index: 1;
+        }
+
+        .legende {
+            display: flex;
+            margin-top: 10px;
+        }
+
+        .legende-elem {
+            margin-right: 20px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .legende-farbe {
+            width: 15px;
+            height: 15px;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Realisierter Stromverbrauch in Deutschland</h1>
+    <p> (Legende unten)</p>
+    <div>
+        <svg class="chart" width="1500" height="830" aria-labelledby="chartinfo"></svg>
+        <div class="tooltip"></div>
+        <div class="legende">
+            <div class="legende-elem"  onclick="balkenAnimation('Gesamt (Netzlast)')">
+                <div class="legende-farbe" style="background-color: #6f58e9;"></div>
+                <span>Gesamt(Netzlast)</span>
+            </div>
+            <div class="legende-elem"  onclick="balkenAnimation('Pumpspeicher')">
+                <div class="legende-farbe" style="background-color:#d4e43b;"></div>
+                <span>Pumpspeicher</span>
+            </div>
+            <div class="legende-elem"  onclick="balkenAnimation('Residuallast')">
+                <div class="legende-farbe" style="background-color:#94d13d;"></div>
+                <span>Residuallast</span>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+
+    let daten;
+    async function holen() {
+        request= await fetch('daten.json').catch(console.error);
+             daten= await request.json();
+        
+        const map = new Map();
+        let bausteine=daten["kategorie"]["bausteine"];
+
+        bausteine.forEach(element => {
+            let name=element["baustein_name"];
+            let werte =element["werte"];
+
+            werte.forEach(wert => {
+                let datum= wert["Datum"];
+                let zahl = wert["wert"];
+
+                if(map.has(datum)){
+                    map.get(datum).push({[name]:zahl})
+                }else{
+                map.set(datum,[{[name]:zahl}]);
+                }
+            });
+        });
+
+        let y=10;
+        map.forEach((value,key)=>{
+            let name=key;
+            
+            document.querySelector(".chart").innerHTML+= `
+                <text x= "0" y="${y+25}"  fill="black">${name}</text>  
+                `;
+
+           for(const element of value){
+            for(const name in element){
+                
+                let zahlKleiner= (parseFloat(element[name].replace(".", "").replace(",", ".")) || 0);
+                console.log(zahlKleiner);
+                if(zahlKleiner<10000){
+                    zahlKleiner/=10;
+                }else if(zahlKleiner >=10000 ){
+                  zahlKleiner/=10000
+                }
+
+                let balkenFarbe = getBalkenFarbe(name);             
+                document.querySelector(".chart").innerHTML += `
+                    <rect class="bar" x="100" y="${y}" width="${zahlKleiner}" height="15" 
+                        daten-tooltip="${name}: ${element[name]}"
+                        daten-name="${name}" 
+                        onmouseover="toolTipAnz(this)" onmouseout="toolTipAus()" fill= "${balkenFarbe}"></rect>
+                    <text class="text" x="${zahlKleiner + 110}" y="${y + 10}" fill="black">${element[name]}</text>
+                `;
+                y += 20;
+            }    
+           } y+=15;
+    })
+    }
+
+    //animationsversuche
+    function toolTipAnz(element) {
+        const tooltip = document.querySelector('.tooltip');
+        tooltip.innerHTML = element.getAttribute('daten-tooltip');
+        tooltip.style.display = 'block';
+    }
+
+    function toolTipAus(){
+        document.querySelector('.tooltip').style.display = 'none';
+    }
+
+    function getBalkenFarbe(name){
+    if (name === "Gesamt (Netzlast)"){
+        return "#6f58e9";
+    } else if (name === "Pumpspeicher"){
+        return "#d4e43b";
+    } else if (name === "Residuallast"){
+        return "#94d13d" 
+    }
+    }
+
+    function balkenAnimation(name){
+    const bars = document.querySelectorAll('.bar');
+  
+    bars.forEach(bar => {
+        const barName = bar.getAttribute('daten-name');
+        
+        if (barName === name) {
+            //balken ein&-ausblenden
+            bar.style.opacity = bar.style.opacity === '0' ? '1' : '0';       
+        }
+    });
+    }
+
+    holen();
+
+</script>
+</html>
