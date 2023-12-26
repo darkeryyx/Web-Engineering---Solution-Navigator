@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf8">
+        <meta name="viewport" content="width-device-width, initial-scale=1.0">
+        <title>
+            Übung 10
+        </title>
+    </head>
+    <body>
+        <h1 align="center">Übung 10</h1>
+
+      <section>
+      <h4>Aufgabe 10.1: Static classes in TypeScript</h4>
+      <p>Gibt es in TypeScript statische Klassen? Erläutern Sie den Unterschied von TypeScript zu anderen objekt-orientierten, statisch typisierten Programmiersprachen wie Java und C#.</p>
+      <p><ins>Meine Lösung: </ins></p>
+      <p>> Gibt es in Typescript statische Klassen?</p>
+      <ul>
+          <li>Nicht direkt</li>
+          <li>Aber: man kann statische Attribute und Methoden definieren, die dann wie statische Elemente in anderen Sprachn funktionieren</li>
+      </ul>
+      <br>
+      <p>> Erläutern Sie den Unterschied von TypeScript zu anderen objekt-orientierten, statisch typisierten Programmiersprachen wie Java und C#.</p>
+        <table border="2"> <!--Tabelle iwann schöner machen-->
+            <tr>
+                <th><b></b></th>
+                <th><b>JavaScript</b></th>
+                <th><b>TypeScript</b></th>
+                <th><b>C#</b></th>
+            </tr>
+            
+            <tr>
+                <td> typisierung & js kompatibilität:</td>
+                <td>baut auf javascript auf, js code kann in typescript integriert werden. typescript fügt optionale statische typisierung, dadurch möglich typen für variablen, parameter und rückgabetypen anzugeben.</td>
+                <td>von grund auf statisch typisiert. typinformationen sind integraler bestandteil der sprachen. keine direkte kompatibilität mit js.</td>
+                <td>von grund auf statisch typisiert. typinformationen sind integraler bestandteil der sprachen. keine direkte kompatibilität mit js.</td>
+
+            </tr>
+            <tr>
+                <td> compiler&ausführung:</td>
+                <td>wird in regulären js code kompiliert, welcher dann in js laufzeitumgebung(browser oder node.js) ausgeführt wird</td>
+                <td>werden in bytecode bzw IL kompiliert, dieser dann von JVM bzw CLR ausgeführt. Strengere Kontrolle über typen während laufzeit.</td>
+                <td>werden in bytecode bzw IL kompiliert, dieser dann von JVM bzw CLR ausgeführt. Strengere Kontrolle über typen während laufzeit.</td>
+            </tr>
+            <tr>
+                <td>duck typing, structural typing</td>
+                <td>strukturelle typisierung</td>
+                <td>nominelle Typisierung</td>
+                <td>nominelle Typisierung</td>
+            </tr>
+            <tr>
+                <td>optionale parameter& defaultwerte</td>
+                <td> ermöglicht optionale parameter& defaultwerte für funktionen-> erhöht flexibilität bei funktionsaufruf-syntax</td>
+                <td> erst seit version 8 einführung von defaultwerten für parameter, optionale parameter über Überladungen möglich</td>
+                <td>unterstützung optionale parameter und defaultwerte seit version 4.0</td>
+            </tr>
+        </table>
+        <br>
+        <hr>
+    </section> 
+    </body>
+    </html>
