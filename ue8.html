@@ -6,15 +6,620 @@
         <title>
             Übung 8
         </title>
+        <style>
+            .error {
+              border: 1px solid red;
+              background-color: rgb(246, 123, 123);
+            }
+      
+            li {
+                  margin-bottom: 5px; /*abstand zw rednern*/
+              }
+              .timer-container {
+                  display: inline-block; /*timer wird neben redner angezeigt*/
+                  margin-left: 5px;
+              }
+              .timer-container div {
+                  display: inline-block; /*button neben zeit*/
+                  margin-right: 5px;
+              }
+      
+              .auswahl ul, .auswahl2 ul, .auswahl3 ul , .auswahl4 ul {
+              list-style-type: none;
+              padding: 0;
+      
+              & li {
+                display: inline-block;
+                color: #333;
+                border: 1px solid #ccc;
+                cursor: pointer;
+              }
+              & li:hover {
+                background-color: #eee;
+              }
+              & label {
+                cursor: pointer;
+                padding: 10px;
+                display: inline-block;
+              }
+            }
+            input[type="radio"] {
+              display: none;
+            }
+            input[type="radio"]:not(:checked) ~ article {
+              display: none;
+            }
+            input[type="radio"]:not(:checked) ~ article2 {
+              display: none;
+            }
+            input[type="radio"]:not(:checked) ~ article3 {
+              display: none;
+            }
+            input[type="radio"]:not(:checked) ~ article4 {
+              display: none;
+            }
+          </style>
     </head>
 
     <body>
+        <header>
         <h1 align="center">Übung 8</h1>
-        <a href="ue8_1.html">Aufgabe 8.1</a>
-        <a href="ue8_2.html">Aufgabe 8.2</a>
-        <a href="ue8_3.html">Aufgabe 8.3</a>
+
+        <nav>
+            <div class="auswahl">
+            <ul>
+                <li><label for="article1">Aufgabe 1</label></li>
+                <li><label for="article2">Aufgabe 2</label></li>
+                <li><label for="article3">Aufgabe 3</label></li>
+            </ul>
+            </div>
+        </nav>
+
         
+       <!--<a href="ue8_1.html">Aufgabe 8.1</a>
+        <a href="ue8_2.html">Aufgabe 8.2</a>
+        <a href="ue8_3.html">Aufgabe 8.3</a>-->
+        <hr>
+    </header>
+
+    <main>
+        <section>
+          <input type="radio" name="article" id="article1"/>
+          <article>
+            <nav>
+                <div class="auswahl2">
+                <ul>
+                    <li><label for="article11">Aufgabe</label></li>
+                    <li><label for="article12">Implementierung</label></li>
+                    <li><label for="article13">txt Dateien</label></li>
+                    <li><label for="article14">Ergebnis</label></li>
+                </ul>
+                </div>
+            </nav>
+            <section>
+                <input type="radio" name="article2" id="article11"/>
+                <article2>
+              <h4> Aufgabe 8.1: Promises</h4>
+              <p>Erstellen Sie auf Ihrem lokalen Server (localhost) zwei Text-Dateien A.txt und B.txt mit ungefähr gleich vielen Zeilen. 
+                Laden Sie mit der fetch-API parallel beide Text-Dateien vom Server. Geben Sie auf einer Webseite den Inhalt beider Dateien zeilenweise aus, 
+                wobei der Anfang der Zeile aus A.txt und das Ende aus B.txt stammen soll. Die beiden Dateien sollen also zeilenweise konkateniert werden. 
+                Erzielen Sie max. Geschwindigkeit durch maximale Parallelität. Achten Sie gleichzeitig auf Korrektheit. Verwenden Sie dabei ausschließlich die Promise-API ohne async/await.</p>
+                 <hr>
+              </article2>
+            </section>
+
+            <section>
+                <input type="radio" name="article2" id="article12"/>
+                <article2>
+                <p><ins>Meine Code-Lösung:</ins></p>
+
+                    <pre>
+
+                        &lt;!DOCTYPE html&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;Übung 8 Aufgabe 8.1&lt;/title&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+  &lt;div id="output"&gt;&lt;/div&gt;
+&lt;/body&gt;
+
+  &lt;script&gt;
+    function fetchData(file) {
+      return new Promise((resolve, reject) => {
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET', file, true);
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === 4) {
+            if (xhr.status === 200) {
+              resolve(xhr.responseText);
+            } else {
+              reject(new Error(`Fetch fehlgeschlagen ${file}`));
+            }
+          }
+        };
+        xhr.send();
+      });
+    }
+
+    function zsmfuegen(dA, dB) {
+      const outputDiv = document.getElementById('output');
+
+      // beide parallel fetchen
+      const promiseA = fetchData(dA);
+      const promiseB = fetchData(dB);
+
+      Promise.all([promiseA, promiseB])
+        .then(([inhaltA, inhaltB]) => {
+          const zA = inhaltA.split('\n');
+          const zB = inhaltB.split('\n');
+
+          zA.forEach((a, index) => {
+            const b = zB[index] || ''; 
+            const concatenatedLine = a + ' ' + b;
+            const elem = document.createElement('p');
+            elem.textContent = concatenatedLine;
+            outputDiv.appendChild(elem);
+          });
+        })
+        .catch(error => {
+          console.error(error.message);
+        });
+    }
+
+    zsmfuegen('http://localhost:8000/A.txt', 'http://localhost:8000/B.txt');
+  &lt;/script&gt;
+
+&lt;/html&gt;
+</pre>
+</article2>
+</section>
+
+
+<section>
+    <input type="radio" name="article2" id="article14"/>
+    <article2>
+
+          <div id="output"></div>
+        
+</article2>
+</section>
+
+
+<section>
+    <input type="radio" name="article2" id="article13"/>
+    <article2>
+        <p>A.txt</p>
+        <pre>
+            
+
+    A
+    AA
+   AAAA
+  AAAAAA
+ AAAAAAAA
+AAAAAAAAAA
+    AA
+    AA
+    
+        </pre>
+        <hr>
+        <p>B.txt</p>
+        <pre>
+            
+
+    B
+    BB
+   BBBB
+  BBBBBB
+ BBBBBBBB
+BBBBBBBBBB
+    BB
+    BB
+        </pre>
+        
+    
+        
+</article2>
+</section>
+    
+          </article>
+        </section>
+
+
+
+
+
+
+       <section>
+          <input type="radio" name="article" id="article2"/>
+          <article>
+            <nav>
+                <div class="auswahl3">
+                <ul>
+                    <li><label for="article21">Aufgabe</label></li>
+                    <li><label for="article22">Implementierung</label></li>
+                    <li><label for="article23">txt Dateien</label></li>
+                    <li><label for="article24">Ergebnis</label></li>
+                </ul>
+                </div>
+            </nav>
+            <section>
+                <input type="radio" name="article2" id="article21"/>
+                <article3>
+              <h4> Aufgabe 8.2: async/await</h4>
+              <p>Lösen Sie die letzte Aufgabe mit async/await statt Promise.</p>
+                 <hr>
+              </article3>
+            </section>
+
+            <section>
+                <input type="radio" name="article2" id="article22"/>
+                <article3>
+                <p><ins>Meine Code-Lösung:</ins></p>
+
+                    <pre>
+                        &lt;!DOCTYPE html&gt;
+                        &lt;head&gt;
+                          &lt;meta charset="UTF-8"&gt;
+                          &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+                          &lt;title&gt;Übung 8 Aufgabe 8.2&lt;/title&gt;
+                        &lt;/head&gt;
+                        
+                        &lt;body&gt;
+                          &lt;div id="output"&gt;&lt;/div&gt;
+                        &lt;/body&gt;
+                        
+                          &lt;script&gt;
+                            async function fetchData(datei) {
+                              try {
+                                const response = await fetch(datei);
+                        
+                                if (!response.ok) {
+                                  throw new Error(`Fetch fehlgeschlagen ${datei}`);
+                                }
+                        
+                                return await response.text();
+                              } catch (error) {
+                                throw error;
+                              }
+                            }
+                        
+                            async function zsmfuegen(dA, dB) {
+                              const outputDiv = document.getElementById('output');
+                        
+                              try {
+                                // Fetch both files in parallel using async/await
+                                const inhaltA = await fetchData(dA);
+                                const inhaltB = await fetchData(dB);
+                        
+                                const zA = inhaltA.split('\n');
+                                const zB = inhaltB.split('\n');
+                        
+                                // Concatenate lines and display
+                                zA.forEach((a, index) => {
+                                  const b = zB[index] || ''; // Handle uneven line counts
+                                  const zsm = a + ' ' + b;
+                                  const elem = document.createElement('p');
+                                  elem.textContent = zsm;
+                                  outputDiv.appendChild(elem);
+                                });
+                              } catch (error) {
+                                console.error(error.message);
+                              }
+                            }
+                        
+                            zsmfuegen('http://localhost:8000/A.txt', 'http://localhost:8000/B.txt');
+                          &lt;/script>
+                        &lt;/html>
+                        
+
+
+     
+</pre>
+</article3>
+</section>
+
+
+<section>
+    <input type="radio" name="article2" id="article24"/>
+    <article3>
+
+          <p>Das Ergebnis ist identisch mit dem Ergebnis von Aufgabe 1</p>
+        
+</article3>
+</section>
+
+
+<section>
+    <input type="radio" name="article2" id="article23"/>
+    <article3>
+        <p>A.txt</p>
+        <pre>
+            
+
+    A
+    AA
+   AAAA
+  AAAAAA
+ AAAAAAAA
+AAAAAAAAAA
+    AA
+    AA
+    
+        </pre>
+        <hr>
+        <p>B.txt</p>
+        <pre>
+            
+
+    B
+    BB
+   BBBB
+  BBBBBB
+ BBBBBBBB
+BBBBBBBBBB
+    BB
+    BB
+        </pre>
+        
+    
+        
+</article3>
+</section>
+    
+          </article>
+        </section>
+
+
+
+
+
+
+
+        <section>
+        <input type="radio" name="article" id="article3"/>
+        <article>
+          <nav>
+              <div class="auswahl4">
+              <ul>
+                  <li><label for="article31">Aufgabe</label></li>
+                  <li><label for="article32">Implementierung</label></li>
+                  <li><label for="article33">Ergebnis</label></li>
+              </ul>
+              </div>
+          </nav>
+          <section>
+              <input type="radio" name="article3" id="article31"/>
+              <article4>
+            <h4> Aufgabe 8.3: WWW-Navigator</h4>
+            <p>Schreiben Sie einen Navigator für die Fachbegriffe des WWW zu den Oberthemen HTML, CSS und JavaScript. 
+                Im Hauptmenü sollen diese 3 Oberthemen zur Auswahl stehen. Im Untermenü soll eine zugehörige Liste von Fachbegriffen 
+                zum jeweiligen ausgewählten Oberthema stehen. In der Mitte soll eine Dokumentation zum ausgewählten Fachbegriff erscheinen.</p>
+               <hr>
+            </article4>
+          </section>
+
+          <section>
+              <input type="radio" name="article3" id="article32"/>
+              <article4>
+              <p><ins>Meine Code-Lösung:</ins></p>
+
+                  <pre>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;meta charset="utf8"&gt;
+        &lt;meta name="viewport" content="width-device-width, initial-scale=1.0"&gt;
+        &lt;title&gt;
+            Übung 8, Aufgabe 3
+        &lt;/title&gt;
+        &lt;style&gt;
+            body {
+                display: flex;
+                flex-direction: column;
+                margin: 0;
+                background-color: rgb(223, 189, 255);
+            }
+    
+            .menu {
+                display: flex;
+                justify-content: space-around;
+                padding: 20px;
+            }
+    
+            #unterthemen {
+                padding: 20px;
+            }
+    
+            #content {
+                padding: 100px;
+        
+            }
+    
+            #quellen {
+                padding: 20px;
+            }
+        &lt;/style&gt;
+    &lt;/head&gt;
+
+    &lt;body&gt;
+      <!-- &lt;h1 align="center"&gt;WWW-Navigator&lt;/h1&gt;-->
+        <!--head-->
+        &lt;div class = "menu" style="background-color: rgb(223, 189, 255);"&gt;
+        &lt;button type="button" onclick="laden('html')"&gt;HTML&lt;/button&gt;
+        &lt;button type="button" onclick="laden('css')"&gt;CSS&lt;/button&gt;
+        &lt;button type="button" onclick="laden('javascript')"&gt;JavaScript&lt;/button&gt;
+        &lt;/div&gt;
+        
+        <!--links-->
+        &lt;div id = "unterthemen" style="background-color: rgb(209, 131, 208);"&gt; &lt;/div&gt;
+
+        <!--mitte-->
+        &lt;div id="content" style="background-color: rgb(252, 255, 165);"&gt;&lt;/div&gt;
+
+        <!--rechts-->
+        &lt;div id="quellen" style="background-color: rgb(218, 143, 229);"&gt;&lt;/div&gt;
+
+    &lt;/body&gt;
+    &lt;script&gt;
+
+        let data;
+        holen();
+        async function holen(){
+             request= await fetch('ue8_3.json').catch(console.error);
+             data= await request.json();
+        }
+       
+        async function laden(thema){
+            document.getElementById("unterthemen").replaceChildren(); //löscht bisherige unterthemen
+            document.getElementById("content").innerText=''; //removed aktuellen angezeigten text
+            document.getElementById("quellen").innerText='';
+
+            for(const key in data[thema]){ //für alles keys in  html zb
+                const unter = document.createElement("button"); //neuer button für diesen key
+                unter.textContent=key; //text wird festgelegt
+                unter.onclick=function(){anzeigen(unter, thema)};
+
+                const liste = document.getElementById("unterthemen"); 
+                liste.appendChild(unter);//neue unterthemen werden hinzugefügt
+            }
+
+            document.querySelector("button").onclick;
+            console.log(data);
+            console.log(data[thema]);
+
+        }
+        function anzeigen(unter, thema){
+  
+        //erstmal inhalt bzw text in der mitte anzeigen
+        let inhalt=unter.textContent; //headings
+    
+        document.getElementById("content").innerText= data[thema][inhalt].content; //.content gibt dann den text von headings und content weils in der json datei content heißt
+        
+        //jz rechts die quellen
+        document.getElementById("quellen").innerText=''; 
+        let quellen=data[thema][inhalt].references;
+
+        quellen.forEach(element => {
+            document.getElementById("quellen").innerText+=element +"\n";
+        });
+
+
+
+        }
+    &lt;/script&gt;
+&lt;/html&gt;
+        
+
+    
+                             
+
+   
+</pre>
+</article4>
+</section>
+
+
+<section>
+  <input type="radio" name="article3" id="article33"/>
+  <article4>
+
+        <a href="ue8_3.html">Um das Ergebnis zu sehen klicke hier.</a>
+      
+</article4>
+</section>
+
+
+       
+        </article>
+      </section>
+
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     </body>
+    <script>
+        function fetchData(file) {
+          return new Promise((resolve, reject) => {
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET', file, true);
+            xhr.onreadystatechange = function () {
+              if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                  resolve(xhr.responseText);
+                } else {
+                  reject(new Error(`Fetch fehlgeschlagen ${file}`));
+                }
+              }
+            };
+            xhr.send();
+          });
+        }
+    
+        function zsmfuegen(dA, dB) {
+          const outputDiv = document.getElementById('output');
+    
+          // beide parallel fetchen
+          const promiseA = fetchData(dA);
+          const promiseB = fetchData(dB);
+    
+          Promise.all([promiseA, promiseB])
+            .then(([inhaltA, inhaltB]) => {
+              const zA = inhaltA.split('\n');
+              const zB = inhaltB.split('\n');
+    
+              zA.forEach((a, index) => {
+                const b = zB[index] || ''; 
+                const concatenatedLine = a + ' ' + b;
+                const elem = document.createElement('p');
+                elem.textContent = concatenatedLine;
+                outputDiv.appendChild(elem);
+              });
+            })
+            .catch(error => {
+              console.error(error.message);
+            });
+        }
+    
+        zsmfuegen('http://localhost:8000/A.txt', 'http://localhost:8000/B.txt');
+      </script>
+    
 </html>
         
 

@@ -6,14 +6,72 @@
         <title>
             Übung 3
         </title>
+        <style>
+            .auswahl ul {
+              list-style-type: none;
+              padding: 0;
+      
+              & li {
+                display: inline-block;
+                color: #333;
+                border: 1px solid #ccc;
+                cursor: pointer;
+              }
+              & li:hover {
+                background-color: #eee;
+              }
+              & label {
+                cursor: pointer;
+                padding: 10px;
+                display: inline-block;
+              }
+            }
+            input[type="radio"] {
+              display: none;
+            }
+            input[type="radio"]:not(:checked) ~ article {
+              display: none;
+            }
+              </style>
     </head>
 
-    <body>
+    <body>        
+        <header>
         <h1 align="center">Übung 3</h1>
+        <nav>
+            <div class="auswahl">
+            <ul>
+                <li><label for="article1">Aufgabe 1</label></li>
+                <li><label for="article2">Aufgabe 2</label></li>
+                <li><label for="article3">Aufgabe 3</label></li>
+            </ul>
+            </div>
+        </nav>
+     
+    </header>
+<main>
+        <section>
+            <input type="radio" name="article" id="article1"/>
+            <article>
         <a href="ue3_1.html">Aufgabe 3.1 Flexbox</a>
+    </article>
+</section>
+
+<section>
+    <input type="radio" name="article" id="article2"/>
+    <article>
         <a href="ue3_2.html">Aufgabe 3.2 Grid</a>
+    </article>
+</section>
+
+<section>
+    <input type="radio" name="article" id="article3"/>
+    <article>
         <a href="ue3_3.html">Aufgabe 3.3 Landing Page</a>
-        
+    </article>
+</section>
+</main>
+<hr>
     </body>
 </html>
         

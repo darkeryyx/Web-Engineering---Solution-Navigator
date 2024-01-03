@@ -9,17 +9,169 @@
         border: 1px solid red;
         background-color: rgb(246, 123, 123);
       }
+
+      li {
+            margin-bottom: 5px; /*abstand zw rednern*/
+        }
+        .timer-container {
+            display: inline-block; /*timer wird neben redner angezeigt*/
+            margin-left: 5px;
+        }
+        .timer-container div {
+            display: inline-block; /*button neben zeit*/
+            margin-right: 5px;
+        }
+
+        .auswahl ul {
+        list-style-type: none;
+        padding: 0;
+
+        & li {
+          display: inline-block;
+          color: #333;
+          border: 1px solid #ccc;
+          cursor: pointer;
+        }
+        & li:hover {
+          background-color: #eee;
+        }
+        & label {
+          cursor: pointer;
+          padding: 10px;
+          display: inline-block;
+        }
+      }
+      input[type="radio"] {
+        display: none;
+      }
+      input[type="radio"]:not(:checked) ~ article {
+        display: none;
+      }
     </style>
   </head>
 
   <body>
+    <header>
+    <h1 align="center">Übung 6</h1>
+    <p align="center"> Übung 6 enthält 5 Aufgaben, von denen ich jedoch nur die 1. auf dieser Seite darstellen möchte.</p>
+    <nav>
+      <div class="auswahl">
+      <ul>
+          <li><label for="article1">Aufgabe</label></li>
+          <li><label for="article2">Implementierung</label></li>
+          <li><label for="article3">Ergebnis</label></li>
+      </ul>
+      </div>
+  </nav>
+  
+  <hr>
+    </header>
 
+    <main>
+      <section>
+        <input type="radio" name="article" id="article1"/>
+        <article>
+      <h4> Aufgabe 6.1: Klammerpaare</h4>
+      <p>Schreiben Sie eine Webseite, in die man eine Zeichenkette mit beliebigen Buchstaben, Zahlen und Sonderzeichen eingeben kann, die beliebig geschachtelte Klammern [...], (...) und {...} enthält, sodass sofort geprüft wird, ob alle Klammerpaare korrekt geschachtelt sind. Das Eingabefeld der Zeichenkette soll rot gefärbt werden, wenn es ein Klammerpaar gibt, das falsch geschachtelt ist. Verwenden Sie für Ihre Tests die Funktion console.assert.
+
+        Bonus: Verallgemeinern Sie Ihren Algorithmus, sodass man Klammerpaare als Parameter frei definieren kann. Es müssen also nicht [...], (...) und {...} sein, sondern es können auch andere Zeichen gewählt werden.</p>
+         <hr>
+      </article>
+    </section>
+
+    <section>
+      <input type="radio" name="article" id="article3"/>
+      <article>
     <h1>Klammerpaar-Prüfer</h1>
-
     <label for="klammern">Geben Sie Ihre zu überprüfende Zeichenkette ein:</label>
     <br><br>
     <input type="text" id="klammern">
+  </article>
+</section>
 
+
+<section>
+  <input type="radio" name="article" id="article2"/>
+  <article>
+    <p><ins>Meine Code-Lösung um den Klammerpaar-Prüfer zu bauen: </ins></p>
+
+    <pre>
+      &lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta charset="utf-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Übung 6&lt;/title&gt;
+      &lt;style&gt;
+        .error {
+          border: 1px solid red;
+          background-color: rgb(246, 123, 123);
+        }
+      &lt;/style&gt;
+  &lt;/head&gt;
+  
+      &lt;body&gt;
+        &lt;h1&gt;Klammerpaar-Prüfer&lt;/h1&gt;
+        &lt;label for="klammern"&gt;Geben Sie Ihre zu überprüfende Zeichenkette ein:&lt;/label&gt;
+        &lt;br&gt;&lt;br&gt;
+        &lt;input type="text" id="klammern"&gt;
+      &lt;/body&gt;
+  
+         &lt;script&gt;
+              /*  const eingabe = document.getElementById("klammern");
+              eingabe.addEventListener("input", checkKlammern);*/
+
+              function checkKlammern(input) {
+                const stack = [];
+                const offeneKlammern = ['(', '{', '['];
+                const schließKlammern = [')', '}', ']'];
+                const map =new Map([[')','('], ['}','{'], [']','[']]); //um zu vergleichen ob die schließ. klammern den öffnenden entsprechen
+
+            //    eingabe.classList.remove('error'); // wieder weiss färben bei erneuter eingabe
+
+                for (let i = 0; i < input.length; i++) {
+                  if (offeneKlammern.includes(input.charAt(i))) {
+                    stack.push(input.charAt(i));
+
+                  } else if (schließKlammern.includes(input.charAt(i))) {
+
+                    if (stack.pop() !== map.get(input.charAt(i))) {              
+                      return false;// schleifenabbruch bei falscher klammerung
+                    } 
+
+                  } else {
+                    //alle anderen zeichen werden geskipped
+                  }
+                }
+                return stack.length===0; //zum überprüfen ob noch offene klammern übrig bleiben
+            }
+
+            const eingabe = document.getElementById("klammern");
+              eingabe.addEventListener("input", function() {
+                eingabe.classList.remove('error'); //bei jeder neuen eingabe feld erstma wieder weiss färben
+                const isValid = checkKlammern(eingabe.value);
+
+                if (!isValid) {
+                  eingabe.classList.add('error');
+                }
+              });
+
+            // testfälle
+            console.assert(checkKlammern("()") === true, "Test Case 1 Failed");
+            console.assert(checkKlammern("{[()]}") ===true, "Test Case 2 Failed");
+            console.assert(checkKlammern("{[()]") ===false, "Test Case 3 Failed");
+         &lt;/script&gt;
+&lt;/html&gt;
+    </pre>
+    <hr>
+  </article>
+</section>
+
+
+
+  </main>
+  </body>
+  
     <script>
     /*  const eingabe = document.getElementById("klammern");
       eingabe.addEventListener("input", checkKlammern);*/
@@ -64,5 +216,4 @@
     console.assert(checkKlammern("{[()]}") ===true, "Test Case 2 Failed");
     console.assert(checkKlammern("{[()]") ===false, "Test Case 3 Failed");
     </script>
-  </body>
 </html>

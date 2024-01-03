@@ -6,11 +6,52 @@
         <title>
             Übung 2 Lösungen
         </title>
+        <style>
+            .auswahl ul {
+              list-style-type: none;
+              padding: 0;
+      
+              & li {
+                display: inline-block;
+                color: #333;
+                border: 1px solid #ccc;
+                cursor: pointer;
+              }
+              & li:hover {
+                background-color: #eee;
+              }
+              & label {
+                cursor: pointer;
+                padding: 10px;
+                display: inline-block;
+              }
+            }
+            input[type="radio"] {
+              display: none;
+            }
+            input[type="radio"]:not(:checked) ~ article {
+              display: none;
+            }
+              </style>
     </head>
     <body>
+        <header>
         <h1 align="center">Übung 2</h1>
-
+        <nav>
+            <div class="auswahl">
+            <ul>
+                <li><label for="article1">Aufgabe 1</label></li>
+                <li><label for="article2">Aufgabe 2</label></li>
+                <li><label for="article3">Aufgabe 3</label></li>
+                <li><label for="article4">Aufgabe 4</label></li>
+            </ul>
+            </div>
+        </nav>
+</header>
+<main>
       <section>
+        <input type="radio" name="article" id="article1"/>
+        <article>
       <h4>Aufgabe 2.1: Zuordnung der Homepage</h4>
         <p>Geben Sie hier die Repository-URL Ihrer Homepage an, damit ich sie Ihrer Person eindeutig zuordnen kann:
             Es muss ein privates Repository sein, auf das nur Sie und ich Zugriff haben. Stellen Sie also sicher, dass ich als Collaborator eingetragen bin und die Einladung bestätigt habe. Mein GitHub-Benutzername ist akless.
@@ -19,9 +60,12 @@
         <p><ins>Mein Repo:</ins></p>
         <a href="https://github.com/darkeryyx/webEng">Klick hier um zu meiner Repo zu gelangen</a>
         <hr>
+        </article>
       </section>
 
     <section>
+        <input type="radio" name="article" id="article2"/>
+        <article>
         <h4>Aufgabe 2.2: CSS-Selektoren und CSS-Farben</h4>
         <p>Berechnen Sie die Spezifität folgender CSS-Selektoren:</p>
         <ol>
@@ -98,9 +142,12 @@
             </tr>
         </table>
         <hr>
+    </article>
     </section>
 
     <section>
+        <input type="radio" name="article" id="article3"/>
+        <article>
         <h4>Aufgabe 2.3: CSS-Positionierung</h4>
         <p>Bauen Sie das dynamische Verhalten in den folgenden beiden Videos exakt nach:</p>
         <ul>
@@ -263,8 +310,13 @@
 &lt;/html&gt;
     
     </pre>
+</article>
     </section>
 <hr>
+
+<section>
+    <input type="radio" name="article" id="article4"/>
+    <article>
     <h4>Aufgabe 2.4: Wireframe mit HTML und CSS </h4>
         <p>Die Aufgabe bestand darin, ein gegebenes Wireframe exakt nachzubauen, mit CSS und HTML.</p>
 
@@ -435,6 +487,8 @@
       &lt;/body&gt; 
       &lt;/html&gt;      
         </pre>
-    <hr>
+    </article>
+    </section>
+</main>
     </body>
     </html> 

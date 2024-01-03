@@ -4,17 +4,265 @@
         <meta charset="utf8">
         <meta name="viewport" content="width-device-width, initial-scale=1.0">
         <title>
-            Übung 8
+            Übung 9
         </title>
+        <style>
+      
+              .auswahl ul, .auswahl2 ul, .auswahl3 ul , .auswahl4 ul {
+              list-style-type: none;
+              padding: 0;
+      
+              & li {
+                display: inline-block;
+                color: #333;
+                border: 1px solid #ccc;
+                cursor: pointer;
+              }
+              & li:hover {
+                background-color: #eee;
+              }
+              & label {
+                cursor: pointer;
+                padding: 10px;
+                display: inline-block;
+              }
+            }
+            input[type="radio"] {
+              display: none;
+            }
+            input[type="radio"]:not(:checked) ~ article {
+              display: none;
+            }
+            input[type="radio"]:not(:checked) ~ article2 {
+              display: none;
+            }
+            input[type="radio"]:not(:checked) ~ article3 {
+              display: none;
+            }
+            input[type="radio"]:not(:checked) ~ article4 {
+              display: none;
+            }
+          </style>
     </head>
 
     <body>
+        <header>
         <h1 align="center">Übung 9</h1>
-        <a href="ue9_1.html">Aufgabe 9.1</a>
-        <a href="ue9_2.html">Aufgabe 9.2</a>
-        <a href="ue9_3TicTacToe.html">Aufgbae 9.3 TicTacToe</a>
+
+        <nav>
+            <div class="auswahl">
+            <ul>
+                <li><label for="article1">Aufgabe 1</label></li>
+                <li><label for="article2">Aufgabe 2</label></li>
+                <li><label for="article3">Aufgabe 3</label></li>
+            </ul>
+            </div>
+        </nav>
+
         
+       <!--<a href="ue8_1.html">Aufgabe 8.1</a>
+        <a href="ue8_2.html">Aufgabe 8.2</a>
+        <a href="ue8_3.html">Aufgabe 8.3</a>-->
+        <hr>
+    </header>
+
+    <main>
+        <section>
+          <input type="radio" name="article" id="article1"/>
+          <article>
+            <nav>
+                <div class="auswahl2">
+                <ul>
+                    <li><label for="article11">Aufgabe</label></li>
+                    <li><label for="article12">Ergebnis</label></li>
+                </ul>
+                </div>
+            </nav>
+            <section>
+                <input type="radio" name="article2" id="article11"/>
+                <article2>
+              <h4> Aufgabe 9.1: SVG Grafik von Hand erstellen 2 Punkte</h4>
+              <p>Codieren Sie eine HTML-Datei mit Inline SVG, sodass sich folgendes Aussehen ergibt:</p>
+                 <hr>
+              </article2>
+            </section>
+
+<section>
+    <input type="radio" name="article2" id="article12"/>
+    <article2>
+
+          <a href="ue9_1.html">Um das Resultat zu sehen klicke hier</a>
+        
+</article2>
+</section>
+
+          </article>
+        </section>
+
+
+
+
+
+
+       <section>
+          <input type="radio" name="article" id="article2"/>
+          <article>
+            <nav>
+                <div class="auswahl3">
+                <ul>
+                    <li><label for="article21">Aufgabe</label></li>
+                    <li><label for="article22">Ergebnis</label></li>
+                </ul>
+                </div>
+            </nav>
+            <section>
+                <input type="radio" name="article2" id="article21"/>
+                <article3>
+              <h4> Aufgabe 9.2: Statistik-Balkendiagramm in SVG</h4>
+              <p>Implementieren Sie ein eigenes Balkendiagramm mit HTML, Inline SVG, CSS und JavaScript. 
+                Geben Sie die Daten für das Balkendiagramm im JSON-Format vor. Nehmen Sie als Beispieldaten Marktdaten von der Bundesnetzagentur.
+                Animieren Sie die Grafik (siehe z.B. Highchart Bar Chart).</p>
+                 <hr>
+              </article3>
+            </section>
+
+
+
+<section>
+    <input type="radio" name="article2" id="article22"/>
+    <article3>
+        <a href="ue9_2.html">Klicke hier um das Resultat zu sehen.</a>
+        
+</article3>
+</section>
+
+    
+          </article>
+        </section>
+
+
+
+
+
+
+
+        <section>
+        <input type="radio" name="article" id="article3"/>
+        <article>
+          <nav>
+              <div class="auswahl4">
+              <ul>
+                  <li><label for="article31">Aufgabe</label></li>
+                  <li><label for="article32">Ergebnis</label></li>
+              </ul>
+              </div>
+          </nav>
+          <section>
+              <input type="radio" name="article3" id="article31"/>
+              <article4>
+            <h4> Aufgabe 9.3: Interaktive SVG Grafik</h4>
+            <p>Implementieren Sie das Spiel Tic-Tac-Toe als HTML-Datei mit Inline SVG, CSS und JS.</p>
+               <hr>
+            </article4>
+          </section>
+
+<section>
+  <input type="radio" name="article3" id="article32"/>
+  <article4>
+
+        <a href="ue9_3TicTacToe.html">Um das Resultat zu sehen klicke hier.</a>
+      
+</article4>
+</section>
+
+
+       
+        </article>
+      </section>
+
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     </body>
+    <script>
+        function fetchData(file) {
+          return new Promise((resolve, reject) => {
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET', file, true);
+            xhr.onreadystatechange = function () {
+              if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                  resolve(xhr.responseText);
+                } else {
+                  reject(new Error(`Fetch fehlgeschlagen ${file}`));
+                }
+              }
+            };
+            xhr.send();
+          });
+        }
+    
+        function zsmfuegen(dA, dB) {
+          const outputDiv = document.getElementById('output');
+    
+          // beide parallel fetchen
+          const promiseA = fetchData(dA);
+          const promiseB = fetchData(dB);
+    
+          Promise.all([promiseA, promiseB])
+            .then(([inhaltA, inhaltB]) => {
+              const zA = inhaltA.split('\n');
+              const zB = inhaltB.split('\n');
+    
+              zA.forEach((a, index) => {
+                const b = zB[index] || ''; 
+                const concatenatedLine = a + ' ' + b;
+                const elem = document.createElement('p');
+                elem.textContent = concatenatedLine;
+                outputDiv.appendChild(elem);
+              });
+            })
+            .catch(error => {
+              console.error(error.message);
+            });
+        }
+    
+        zsmfuegen('http://localhost:8000/A.txt', 'http://localhost:8000/B.txt');
+      </script>
+    
 </html>
         
 

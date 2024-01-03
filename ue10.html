@@ -6,13 +6,68 @@
         <title>
             Übung 10
         </title>
+        <style>
+            li {
+                margin-bottom: 5px; /*abstand zw rednern*/
+            }
+            .timer-container {
+                display: inline-block; /*timer wird neben redner angezeigt*/
+                margin-left: 5px;
+            }
+            .timer-container div {
+                display: inline-block; /*button neben zeit*/
+                margin-right: 5px;
+            }
+    
+            .auswahl ul {
+            list-style-type: none;
+            padding: 0;
+    
+            & li {
+              display: inline-block;
+              color: #333;
+              border: 1px solid #ccc;
+              cursor: pointer;
+            }
+            & li:hover {
+              background-color: #eee;
+            }
+            & label {
+              cursor: pointer;
+              padding: 10px;
+              display: inline-block;
+            }
+          }
+          input[type="radio"] {
+            display: none;
+          }
+          input[type="radio"]:not(:checked) ~ article {
+            display: none;
+          }
+        </style>
     </head>
     <body>
+        <header>
         <h1 align="center">Übung 10</h1>
+        <p align="center"> Übung 10 enthält 3 Aufgaben, von denen ich jedoch nur die 1. auf dieser Seite darstellen möchte.</p>
+        <nav>
+            <div class="auswahl">
+            <ul>
+                <li><label for="article1">Aufgabe 1</label></li>
+            </ul>
+            </div>
+        </nav>
+        <hr>
+    </header>
 
+    <main>
+        <section>
+          <input type="radio" name="article" id="article1"/>
+          <article>
       <section>
       <h4>Aufgabe 10.1: Static classes in TypeScript</h4>
       <p>Gibt es in TypeScript statische Klassen? Erläutern Sie den Unterschied von TypeScript zu anderen objekt-orientierten, statisch typisierten Programmiersprachen wie Java und C#.</p>
+      
       <p><ins>Meine Lösung: </ins></p>
       <p>> Gibt es in Typescript statische Klassen?</p>
       <ul>
@@ -57,6 +112,9 @@
         </table>
         <br>
         <hr>
+    </article>
+      </section>
     </section> 
+    </main>
     </body>
     </html>

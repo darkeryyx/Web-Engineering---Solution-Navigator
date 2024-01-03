@@ -7,9 +7,52 @@
         <title>
             Übung 4 Lösungen
         </title>
+        <style>
+            .auswahl ul {
+              list-style-type: none;
+              padding: 0;
+      
+              & li {
+                display: inline-block;
+                color: #333;
+                border: 1px solid #ccc;
+                cursor: pointer;
+              }
+              & li:hover {
+                background-color: #eee;
+              }
+              & label {
+                cursor: pointer;
+                padding: 10px;
+                display: inline-block;
+              }
+            }
+            input[type="radio"] {
+              display: none;
+            }
+            input[type="radio"]:not(:checked) ~ article {
+              display: none;
+            }
+              </style>
     </head>
     <body>
-        <h1 align="center">Übung 4</h1>
+        <header>
+            <h1 align="center">Übung 4</h1>
+            <nav>
+                <div class="auswahl">
+                <ul>
+                    <li><label for="article1">Aufgabe 1</label></li>
+                    <li><label for="article2">Aufgabe 2</label></li>
+                    <li><label for="article3">Aufgabe 3</label></li>
+                </ul>
+                </div>
+            </nav>
+            <hr>
+        </header>
+    <main>
+      <section>
+        <input type="radio" name="article" id="article1"/>
+        <article>
 
         <h4> Aufgabe 4.1: Funktionen</h4>
         <p>Schreiben Sie folgende Funktionen in JavaScript:</p>
@@ -77,7 +120,12 @@
              **/
             </pre>
         <hr>
+        </article>
+      </section>
 
+      <section>
+        <input type="radio" name="article" id="article2"/>
+        <article>
         <h4> Aufgabe 4.2: Objekte</h4>
         <p>Schreiben Sie die Prototypen <mark>Person</mark> und <mark>Auto</mark> in JavaScript, sodass jede Person weiß, welche Autos sie besitzt. 
             Schreiben Sie eine Funktion <mark>conflict()</mark>, die feststellt, ob ein Auto von mehr als einer Person besessen wird.</p>
@@ -146,6 +194,12 @@
     console.log(conflict(auto1));
     console.log(conflict(auto2)); </pre>
     <hr>
+</article>
+</section>
+
+<section>
+    <input type="radio" name="article" id="article3"/>
+    <article>
     <h4> Aufgabe 4.3: Fibonacci</h4>
     <p>Schreiben Sie im Browser die Fibonacci-Funktion in JS und geben Sie die ersten 2000 Fibonacci-Zahlen 0,1,1,2,3,5,8,13,... auf der Konsole mit console.log() aus.
 
@@ -183,7 +237,9 @@
         <li>2 353 412 818 241 252 672 952 597 492 098 ist die größte Fibonacci-Zahl die sich noch als Number sicher speichern lässt und ist die 147. Zahl in der Fibonacci-Folge.</li>
     </ol>
     
-    
+</article>
+</section>
+    </main>
     
     </body>
     </html>
