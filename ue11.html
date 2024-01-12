@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf8">
+        <meta name="viewport" content="width-device-width, initial-scale=1.0">
+        <title>
+            Übung 2 Lösungen
+        </title>
+        <style>
+            .auswahl ul {
+              list-style-type: none;
+              padding: 0;
+      
+              & li {
+                display: inline-block;
+                color: #333;
+                border: 1px solid #ccc;
+                cursor: pointer;
+              }
+              & li:hover {
+                background-color: #eee;
+              }
+              & label {
+                cursor: pointer;
+                padding: 10px;
+                display: inline-block;
+              }
+            }
+            input[type="radio"] {
+              display: none;
+            }
+            input[type="radio"]:not(:checked) ~ article {
+              display: none;
+            }
+              </style>
+    </head>
+    <body>
+        <header>
+        <h1 align="center">Übung 11</h1>
+        <nav>
+            <div class="auswahl">
+            <ul>
+                <li><label for="article1">Aufgabe 1</label></li>
+            </ul>
+            </div>
+        </nav>
+</header>
+<main>
+      <section>
+        <input type="radio" name="article" id="article1"/>
+        <article>
+      <h4>Aufgabe 11.1: Lokaler Webserver mit NodeJS</h4>
+        <p>Erstellen Sie einen lokalen Webserver mit NodeJS. Reichen Sie als Lösung den JS-Code Ihrer server.js ein. 
+            Der Webserver soll über eine Schnittstelle verfügen, an die ein Client einen Namen senden kann und als Ergebnis 
+            dann mit einem Gruß antwortet. Beispiel: Der Client sendet "Mika" und der Server antwortet mit "Hallo Mika!".
+        </p>
+        <p><ins>Meine Lösung:</ins></p>
+            <pre>const http = require('http');
+                const url = require('url');
+                
+                const server = http.createServer((anfrage, antwort) => {
+                    const abfrageObjekt = url.parse(anfrage.url, true).query;
+                
+                    if (anfrage.method === 'GET' && abfrageObjekt.name) {
+                        antwort.writeHead(200, {'Content-Type': 'text/plain'});
+                        antwort.end(`Hallo ${abfrageObjekt.name}!`);
+                    } else {
+                        antwort.writeHead(404, {'Content-Type': 'text/plain'});
+                        antwort.end('Keiner zum grueßen da');
+                    }
+                });
+                
+                const PORT = 3000;
+                server.listen(PORT, () => {
+                    console.log(`Der Server läuft auf http://localhost:${PORT}`);
+                });
+                </pre>
+        
+        </article>
+      </section>
+
+
+<hr>
+
+</main>
+    </body>
+    </html> 
