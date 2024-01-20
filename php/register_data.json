@@ -1,0 +1,32 @@
+[
+    {
+        "vorname": "test3",
+        "nachname": "werw",
+        "email": "test@test.de",
+        "passwort": "$2y$10$qfCtCSLKbSZLxQm5fT5l6umxla7nkXe3xANn\/I28RlKozJ7y7qPWO"
+    },
+    {
+        "vorname": "lll",
+        "nachname": "lllll",
+        "email": "test4@test.de",
+        "passwort": "$2y$10$ITZSE7MyTQvVklPNYp\/PGOICrE.598W.o5DAwFzVuoFMYbJ7RG0s2"
+    },
+    {
+        "vorname": "dgdfg",
+        "nachname": "ergre",
+        "email": "test5@hallo.de",
+        "passwort": "$2y$10$Vyko6LFttmXNx0lYMCQsq.BW15d\/qxBICSjm3c92236F.te.Rt62K"
+    },
+    {
+        "vorname": "Bernd",
+        "nachname": "Das Brot",
+        "email": "bernd@brot.de",
+        "passwort": "$2y$10$KOWYD11dXLW3LyxJLDHhb.gwVMKjIWyNGGh.wrsT2SDSFdLal9Oqm"
+    },
+    {
+        "vorname": "jjh",
+        "nachname": "uhuh",
+        "email": "lilacc@lilaa.de",
+        "passwort": "$2y$10$YRlhlowS1fGJ\/LQ9915LYeqoIEWqTtQl5\/FK.Mcb\/DgMW7019p2Gy"
+    }
+]
