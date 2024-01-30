@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Arrow Functions Beispiele</title>
+</head>
+<body>
+    <h1>Arrow Functions in JavaScript</h1>
+
+    <script>
+        // ohne parameter
+        const hi = () => {
+            console.log("hiii");
+        };
+        
+        // mit einem parameter
+        const quadrat = (x) => {
+            return x * x;
+        };
+
+        // ein parameter + impliziter rückgabewert
+        const mal3 = (zahl) => zahl * 3;
+
+        // mit einem parameter
+        const durch2 = (x) => {
+            return x / 2;
+        };
+
+        // mehrere parameter
+        const addieren = (a, b) => {
+            return a + b;
+        };
+
+        // als funktion in einem objekt
+        const hund = {
+            laut: "wuff",
+            machLaut: function(){
+                console.log(`${this.laut}`);
+            }
+        };
+
+        hi();
+        console.log("5^2= ", quadrat(5));
+        console.log("3*3= ", mal3(3));
+        console.log("8/2= ", durch2(8));
+        console.log("3+2= ", addieren(2, 3));
+        hund.machLaut();
+
+        // als call back funktion
+        const zahlen = [1, 2, 3, 4, 5];
+        const alleHoch2 = zahlen.map((zahl) => zahl * zahl);
+        console.log("1, 2, 3, ,4, 5 quadriert: ", alleHoch2);
+
+        // mit bedingung
+        const istGerade = (zahl) => zahl % 2 === 0;
+        console.log("4 gerade?", istGerade(4));
+
+        const werte = [1, 2, 3, 4, 5];
+
+        // map() mit arrow function
+        const quadrierteZahlen = werte.map((zahl) => zahl * zahl);
+        // forEach() arrow function
+        quadrierteZahlen.forEach((zahl, index) => {
+            console.log(`Die Quadrierung von ${zahlen[index]} ergibt ${zahl}`);
+        });
+        // forEach() mit anonymer Funktion
+        werte.forEach(function(element) {
+            console.log(element);
+        });
+    </script>
+</body>
+</html>

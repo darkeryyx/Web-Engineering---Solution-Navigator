@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Übung 12 A 1</title>
+    <style>
+
+        .auswahl ul {
+        list-style-type: none;
+        padding: 0;
+
+        & li {
+          display: inline-block;
+          color: #333;
+          border: 1px solid #ccc;
+          cursor: pointer;
+        }
+        & li:hover {
+          background-color: #eee;
+        }
+        & label {
+          cursor: pointer;
+          padding: 10px;
+          display: inline-block;
+        }
+      }
+      input[type="radio"] {
+        display: none;
+      }
+      input[type="radio"]:not(:checked) ~ article {
+        display: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+    <h1 align="center">Übung 12</h1>
+    <p align="center"> Übung 12 enthält 3 Aufgaben, von denen ich jedoch nur die 1. auf dieser Seite darstellen möchte.</p>
+    <p><b>Aufgabe: 12.1 Registrierung mit PHP</b></p>
+    <p>Erstellen Sie mit PHP ein Registrierungsformular. Speichern Sie die eingegebenen Daten persistent in einer Datei. 
+        Schreiben Sie Ihre PHP-Scripte so, dass es dabei zu keinen Nebenläufigkeitsartefakten (z.B. Lost Update) kommen kann, 
+        egal wie viele Nutzer sich gleichzeitig registrieren.</p>
+    <nav>
+      <div class="auswahl">
+      <ul>
+          <li><label for="article1">PHP</label></li>
+          <li><label for="article2">HTML</label></li>
+          <li><label for="article3">JSON Datei</label></li>
+      </ul>
+      </div>
+  </nav>
+  
+  <hr>
+    </header>
+
+    <main>
+      <section>
+        <input type="radio" name="article" id="article1"/>
+        <article>
+            <pre><!--Um Lost Updates zu vermeiden verwende ich File locking -->
+                &lt;?php
+                $file_path = 'register_data.json';
+                
+                if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                    $vorname = $_POST['vorname'];
+                    $nachname = $_POST['nachname'];
+                    $email = $_POST['email'];
+                    $passwort = password_hash($_POST['passwort'], PASSWORD_DEFAULT); // pw hashen
+                
+                    $new_user = [
+                        'vorname' => $vorname,
+                        'nachname' => $nachname,
+                        'email' => $email,
+                        'passwort' => $passwort
+                    ];
+                
+                    // datei mit lock öffnen
+                    $file = fopen($file_path, 'c+');
+                    if (flock($file, LOCK_EX)) {
+                        
+                        $data = '';
+                        while (!feof($file)) {
+                            $data .= fread($file, 8192); //datei lesen
+                        }
+                        
+                        $users = $data ? json_decode($data, true) : [];
+                
+                        // neuer nutzer rein
+                        $users[] = $new_user;
+                
+                        // neue liste schreiben
+                        ftruncate($file, 0);
+                        rewind($file);
+                        fwrite($file, json_encode($users, JSON_PRETTY_PRINT));
+                        fflush($file); // flushen und schreiben
+                        flock($file, LOCK_UN); //freigeben
+                    }
+                
+                    fclose($file);
+                    echo "Registrierung erfolgreich!";
+                }
+                ?&gt;
+            </pre> 
+         <hr>
+      </article>
+    </section>
+
+    <section>
+      <input type="radio" name="article" id="article2"/>
+      <article>
+
+    <pre>
+        &lt;!DOCTYPE html&gt;
+        &lt;html lang="de"&gt;
+        &lt;head&gt;
+            &lt;meta charset="UTF-8"&gt;
+            &lt;title&gt;Übung 12.1: Registrierung mit PHP&lt;/title&gt;
+            &lt;style&gt;
+                body {
+                    font-family: Arial, sans-serif;
+                    background-color: #f4f4f4;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: 100vh;
+                    margin: 0;
+                }
+        
+                form {
+                    background: white;
+                    padding: 20px;
+                    border-radius: 8px;
+                    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                }
+        
+                h2 {
+                    text-align: center;
+                }
+        
+                label {
+                    display: block;
+                    margin-top: 10px;
+                }
+        
+                input[type="text"],
+                input[type="email"],
+                input[type="password"] {
+                    width: calc(100% - 22px);
+                    padding: 10px;
+                    margin-top: 5px;
+                    margin-bottom: 20px;
+                    border-radius: 4px;
+                    border: 1px solid #ddd;
+                }
+        
+                input[type="submit"] {
+                    width: 100%;
+                    padding: 10px;
+                    border: none;
+                    border-radius: 4px;
+                    background-color: #BA1EFF;
+                    color: white;
+                    cursor: pointer;
+                }
+        
+                input[type="submit"]:hover {
+                    background-color: #8816BA;
+                }
+            &lt;/style&gt;
+        &lt;/head&gt;
+        &lt;body&gt;
+            &lt;form action="registrieren.php" method="post"&gt;
+                &lt;h2&gt;Registrieren&lt;/h2&gt;
+                &lt;label for="vorname"&gt;Vorname:&lt;/label&gt;
+                &lt;input type="text" id="vorname" name="vorname" required&gt;
+        
+                &lt;label for="nachname"&gt;Nachname:&lt;/label&gt;
+                &lt;input type="text" id="nachname" name="nachname" required&gt;
+        
+                &lt;label for="email"&gt;E-Mail:&lt;/label&gt;
+                &lt;input type="email" id="email" name="email" required&gt;
+        
+                &lt;label for="passwort"&gt;Passwort:&lt;/label&gt;
+                &lt;input type="password" id="passwort" name="passwort" required&gt;
+        
+                &lt;input type="submit" value="Registrieren"&gt;
+            &lt;/form&gt;
+        &lt;/body&gt;
+        &lt;/html&gt;
+        </pre>
+    <br><br>
+  </article>
+</section>
+
+
+<section>
+  <input type="radio" name="article" id="article3"/>
+  <article>
+    <p>Hier sind ein paar Beispiel Daten:</p>
+    <pre>
+        [
+        {
+            "vorname": "test3",
+            "nachname": "werw",
+            "email": "test@test.de",
+            "passwort": "$2y$10$qfCtCSLKbSZLxQm5fT5l6umxla7nkXe3xANn\/I28RlKozJ7y7qPWO"
+        },
+        {
+            "vorname": "lll",
+            "nachname": "lllll",
+            "email": "test4@test.de",
+            "passwort": "$2y$10$ITZSE7MyTQvVklPNYp\/PGOICrE.598W.o5DAwFzVuoFMYbJ7RG0s2"
+        },
+        {
+            "vorname": "dgdfg",
+            "nachname": "ergre",
+            "email": "test5@hallo.de",
+            "passwort": "$2y$10$Vyko6LFttmXNx0lYMCQsq.BW15d\/qxBICSjm3c92236F.te.Rt62K"
+        },
+        {
+            "vorname": "Bernd",
+            "nachname": "Das Brot",
+            "email": "bernd@brot.de",
+            "passwort": "$2y$10$KOWYD11dXLW3LyxJLDHhb.gwVMKjIWyNGGh.wrsT2SDSFdLal9Oqm"
+        },
+        {
+            "vorname": "jjh",
+            "nachname": "uhuh",
+            "email": "lilacc@lilaa.de",
+            "passwort": "$2y$10$YRlhlowS1fGJ\/LQ9915LYeqoIEWqTtQl5\/FK.Mcb\/DgMW7019p2Gy"
+        }
+    ]
+    </pre>
+    <hr>
+  </article>
+</section>
+
+
+
+  </main>
+  </body>
+  
