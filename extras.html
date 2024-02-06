@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf8">
+        <meta name="viewport" content="width-device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script>
+
+        <title>
+            Extras
+        </title>
+        <style>
+        #demo-svg {
+        width: 800px;
+        height: 300px;
+        cursor:crosshair;
+        background-color: #000;
+        }
+
+      .auswahl ul, .auswahl2 ul, .auswahl3 ul , .auswahl4 ul {
+              list-style-type: none;
+              padding: 0;
+      
+              & li {
+                display: inline-block;
+                color: #333;
+                border: 1px solid #ccc;
+                cursor: pointer;
+                background-color: #e2b6ce;
+                border-radius: 10px;
+              }
+              & li:hover {
+                background-color: #e493be;
+              }
+              & label {
+                cursor: pointer;
+                padding: 10px;
+                display: inline-block;
+              }
+            }
+            input[type="radio"] {
+              display: none;
+            }
+
+            input[type="radio"]:not(:checked) ~ article {
+              display: none;
+            }
+            input[type="radio"]:not(:checked) ~ article2 {
+              display: none;
+            }
+            input[type="radio"]:not(:checked) ~ article3 {
+              display: none;
+            }
+            input[type="radio"]:not(:checked) ~ article4 {
+              display: none;
+            }
+
+            /*responsive*/
+            @media screen and (max-width: 800px) {
+
+                #demo-svg {
+                    width: 300px;
+                    height: 300px;
+                    cursor:crosshair;
+                    background-color: #000;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <h1 align="center">Extras</h1>
+            <nav>
+                <div class="auswahl">
+                <ul>
+                    <li><label for="article1">SVG</label></li>
+                    <li><label for="article2">Erklärartikel Spread-Operator</label></li>
+                    <li><label for="article3">Arrow Functions</label></li>
+                    <li><label for="article4">ES6</label></li>
+                    <li><label for="article5">DOM Manipulation & DOM Selektion</label></li>
+                </ul>
+                </div>
+            </nav>
+            <hr>
+        </header>
+    <main>
+      <section>
+        <input type="radio" name="article" id="article1"/>
+        <article>
+            <h4>Homepage: Kurze Demonstration von translate, rotate und scale</h4>
+            <p style="color: red;"><b>Zum Rotieren, verschieben und skalieren einmal doppelklicken auf das Rechteck. <br>Dann kann das Rechteck nach belieben verschoben,rotiert und skaliert werden.</b></p>
+            <svg id="demo-svg" xmlns="http://www.w3.org/2000/svg">
+                <rect id="demo-rect" x="10" y="10" width="40" height="40" fill="pink" />
+              </svg>
+              
+            <hr>
+        </article>
+    </section>
+
+    <section>
+        <input type="radio" name="article" id="article2"/>
+        <article>
+            <h4>Kurzer Erklärartikel zu „Spread“-Operator mit Beispiel</h4>
+        
+            <p>Durch den Spread-Operator kann man Iterables wie unter anderem Listen, Arrays und Strings zerlegen und deren Elemente in anderen Datenstrukturen verteilen.
+                Der Operator wird mit 3 Punkten erstellt und ermöglicht das Hinzufügen, Kombinieren und Erstellen von neuen Iterables.
+
+                Im Folgenden werde ich dazu ein paar Beispiele darstellen:
+            </p>
+            
+            <p><b>Beispiel 1: Zusammenführen von Arrays:</b> </p>
+            <pre>
+                <code>
+                const array1 = [1, 2, 3];
+                const array2 = [4, 5, 6];
+
+                const zsmGefuehrt = [...array1, ...array2];
+                // ergebnis: [1, 2, 3, 4, 5, 6]
+                </code>
+            </pre>
+            <br>
+
+            <p><b>Beispiel 2: Kopieren von Arrays:</b> </p>
+            <pre>
+                <code>
+                const arrayOriginal = [1, 2, 3];
+                const arrayKopie = [...originalArray];
+                // Ergebnis: [1, 2, 3]  
+                </code>
+            </pre>
+            <br>
+
+            <p><b>Beispiel 3: Spread Operator in Funktionen:</b></p>
+            <pre>
+                <code>
+                function adddieren(x, y, z) {
+                    return x + y + z;
+                  }
+                  
+                  const werte = [1, 2, 3];
+                  const sum = addieren(...werte);
+                  // Ergebnis: 6
+                  //hier werden die werte als argumente an die funktion übergeben
+                </code>
+            </pre>
+            <br>
+
+            <p><b>Beispiel 4: Neues Array mit Elementen aus einem anderem Array</b></p>
+            <pre>
+                <code>
+                const alt= [1, 2, 3];
+                const neu = [...alt, 4, 5];
+                // Ergebnis: [1, 2, 3, 4, 5]
+                </code>
+            </pre>
+            
+            <p><b>Wie man sieht kann man mit dem Spread Operator sehr viel machen, wie zB Iterables manipulieren, Datenstrukturen in verschiedenen Kontexten erstellen, erweitern und kombinieren.</b></p>
+
+            <hr>
+        </article>
+    </section>
+
+    <section>
+        <input type="radio" name="article" id="article3"/>
+        <article>
+            <p>Hier sind ein paar Beispiele die ich gebaut hab als ich Arrow Functions gelernt habe: </p>
+            <pre>
+                <code>
+                &lt;script&gt;
+                // ohne parameter
+                const hi = () => {
+                    console.log("hiii");
+                };
+                
+
+                // mit einem parameter
+                const quadrat = (x) => {
+                    return x * x;
+                };
+                
+
+                // ein parameter + impliziter rückgabewert
+                const mal3 = (zahl) => zahl * 3;
+        
+
+                // mit einem parameter
+                const durch2 = (x) => {
+                    return x / 2;
+                };
+        
+
+                // mehrere parameter
+                const addieren = (a, b) => {
+                    return a + b;
+                };
+        
+
+                // als funktion in einem objekt
+                const hund = {
+                    laut: "wuff",
+                    machLaut: function(){
+                        console.log(`${this.laut}`);
+                    }
+                };
+        
+
+                hi();
+                console.log("5^2= ", quadrat(5));
+                console.log("3*3= ", mal3(3));
+                console.log("8/2= ", durch2(8));
+                console.log("3+2= ", addieren(2, 3));
+                hund.machLaut();
+        
+
+                // als call back funktion
+                const zahlen = [1, 2, 3, 4, 5];
+                const alleHoch2 = zahlen.map((zahl) => zahl * zahl);
+                console.log("1, 2, 3, ,4, 5 quadriert: ", alleHoch2);
+        
+
+                // mit bedingung
+                const istGerade = (zahl) => zahl % 2 === 0;
+                console.log("4 gerade?", istGerade(4));
+        
+                const werte = [1, 2, 3, 4, 5];
+        
+
+                // map() mit arrow function
+                const quadrierteZahlen = werte.map((zahl) => zahl * zahl);
+                // forEach() arrow function
+                quadrierteZahlen.forEach((zahl, index) => {
+                    console.log(`Die Quadrierung von ${zahlen[index]} ergibt ${zahl}`);
+                });
+                // forEach() mit anonymer Funktion
+                werte.forEach(function(element) {
+                    console.log(element);
+                });
+             &lt;/script&gt;
+            </code>
+            </pre>
+            <hr>
+        </article>
+    </section>
+
+    <section>
+        <input type="radio" name="article" id="article4"/>
+        <article>
+            <a href="/ES6/demo.html" style="background-color: rgb(224, 169, 219);"><b>Um zu einer interaktiven (ES6) Seite zu gelangen klicke hier.  </b></a>
+            <p>Hier habe ich die Codes der JavaScript Dateien aufgeführt:</p>
+            
+            <article>
+                <nav>
+                    <div class="auswahl2">
+                    <ul>
+                        <li><label for="article11">Code main.js</label></li>
+                        <li><label for="article12">Code modul.js</label></li>
+                    </ul>
+                    </div>
+                </nav>
+                <section>
+                    <input type="radio" name="article2" id="article11"/>
+                    <article2>
+                        <pre>
+                            <code>
+                            import { nutzerGruessen } from './modul.js';
+
+                            document.getElementById('benutzerFormular').addEventListener('submit', ereignis => {
+                                ereignis.preventDefault();
+
+                                const name = document.getElementById('benutzerName').value;
+                                const alter = document.getElementById('benutzerAlter').value;
+
+                                const begruessung = nutzerGruessen(name, alter);
+                                document.getElementById('ausgabe').textContent = begruessung;
+                            });
+                            </code>
+                        </pre>
+                     <hr>
+                  </article2>
+                </section>
+    
+                <section>
+                    <input type="radio" name="article2" id="article12"/>
+                    <article2>
+                    <pre>
+                        <code>
+                        export function nutzerGruessen(name, alter) {
+                            return `Hallo ${name}, du bist ${alter} Jahre alt.`;
+                        }      
+                        </code> 
+                    </pre>
+                    </article2>
+                </section>
+        </article>
+    </section>
+
+    <section>
+        <input type="radio" name="article" id="article5"/>
+            <article>
+                <a href="DOM.html" style="background-color: rgb(224, 169, 219);"><b>Klicke auf diesen Link um Beispiele zu sehen die die unterschiedlichen Fälle zur DOM Selektion &- Manipulation abdecken </b></a>
+                <br><br>
+                <a href="/catExtra/cats.html" style="background-color: rgb(237, 176, 232);"><b>Klicke hier für ein weiteres kleines Beispiel </b></a>
+            <hr>
+        </article>
+    </section>
+
+</main>
+</body>
+
+<script>
+    
+    const svg = document.getElementById('demo-svg');
+    const rechteck = document.getElementById('demo-rect');
+
+    let wirdGezogen = false;
+    let startX, startY;
+    let startRotation = 0;
+    let startSkalierung = 1;
+
+    svg.addEventListener('mousedown', (e) => {
+      wirdGezogen = true;
+      startX = e.clientX;
+      startY = e.clientY;
+      startRotation = parseFloat(rechteck.getAttribute('transform').split('(')[1]) || 0;
+      startSkalierung = parseFloat(rechteck.getAttribute('transform').split('scale(')[1]) || 1;
+    });
+
+    window.addEventListener('mousemove', (e) => {
+      if (!wirdGezogen) return;
+
+      const dx = e.clientX - startX;
+      const dy = e.clientY - startY;
+
+      const aktuelleRotation = startRotation + dx;
+      const aktuelleSkalierung = startSkalierung + dy * 0.01;
+
+      rechteck.setAttribute('transform', `translate(${dx} ${dy}) rotate(${aktuelleRotation} 30 30) scale(${aktuelleSkalierung})`);
+    });
+
+    window.addEventListener('mouseup', () => {
+      wirdGezogen = false;
+    });
+    
+    //arrow functions hier auch nochmal, separat in der Datei arrowFunctions.html !
+        // ohne parameter
+        // ohne parameter
+        const hi = () => {
+            console.log("hiii");
+        };
+        
+        // mit einem parameter
+        const quadrat = (x) => {
+            return x * x;
+        };
+
+        // ein parameter + impliziter rückgabewert
+        const mal3 = (zahl) => zahl * 3;
+
+        // mit einem parameter
+        const durch2 = (x) => {
+            return x / 2;
+        };
+
+        // mehrere parameter
+        const addieren = (a, b) => {
+            return a + b;
+        };
+
+        // als funktion in einem objekt
+        const hund = {
+            laut: "wuff",
+            machLaut: function(){
+                console.log(`${this.laut}`);
+            }
+        };
+
+        hi();
+        console.log("5^2= ", quadrat(5));
+        console.log("3*3= ", mal3(3));
+        console.log("8/2= ", durch2(8));
+        console.log("3+2= ", addieren(2, 3));
+        hund.machLaut();
+
+        // als call back funktion
+        const zahlen = [1, 2, 3, 4, 5];
+        const alleHoch2 = zahlen.map((zahl) => zahl * zahl);
+        console.log("1, 2, 3, ,4, 5 quadriert: ", alleHoch2);
+
+        // mit bedingung
+        const istGerade = (zahl) => zahl % 2 === 0;
+        console.log("4 gerade?", istGerade(4));
+
+        const werte = [1, 2, 3, 4, 5];
+
+        // map() mit arrow function
+        const quadrierteZahlen = werte.map((zahl) => zahl * zahl);
+        // forEach() arrow function
+        quadrierteZahlen.forEach((zahl, index) => {
+            console.log(`Die Quadrierung von ${zahlen[index]} ergibt ${zahl}`);
+        });
+        // forEach() mit anonymer Funktion
+        werte.forEach(function(element) {
+            console.log(element);
+        });
+    </script>
+    </html>
