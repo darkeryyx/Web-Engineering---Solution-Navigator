@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+    <title>DOM Manipulation und Selektion Beispiele</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            margin: 20px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        button {
+            margin: 10px;
+            padding: 10px 15px;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+
+
+        input[type="text"] {
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            margin: 5px 0;
+        }
+
+        #eingabeWerte {
+            margin-top: 10px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="header">Klick auf 'Text ändern' um diesen Text zu ändern</h1>
+    <div class="container">
+        <p>Sehe unterschiedliche Beispiele der DOM Manipulation durch klicken der Buttons</p>
+        <button id="textAendern">Text ändern</button>
+        <button id="farbeAendern">Farbe ändern</button>
+        <button id="elementHinzufuegen">Element hinzufügen</button>
+        <button id="elementEntfernen">Element entfernen</button>
+        <button id="eingaben">Werte der Textfelder anzeigen</button>
+    </div>
+    <div>
+        <input type="text" name="text-field" value="Gib hier was ein">
+        <input type="text" name="text-field" value="und klicke auf 'Werte der Textfelder anzeigen'">
+        <p id="eingabeWerte"></p>
+        <ul id="list">
+            <li class="item">Du kannst hier neue Elemente einfügen </li>
+            <li class="item">und entfernen</li>
+            <li class="item">und die Farbe ändern</li>
+        </ul>
+    </div>
+</body>
+    <script>
+               document.addEventListener('DOMContentLoaded', function() {
+            // text ändern
+            var textChangeFlag = false;
+
+            document.getElementById('textAendern').addEventListener('click', function() {
+                if (textChangeFlag) {
+                    document.querySelector('#header').textContent = 'Random Fact: Rinder können kein Rot sehen';
+                } else {
+                    document.querySelector('#header').textContent = 'Welche Farbe können Rinder nicht sehen?';
+                }
+                textChangeFlag = !textChangeFlag;
+            });
+
+            // tag-Selektor
+            var buttons = document.getElementsByTagName('button');
+            for (var i = 0; i < buttons.length; i++) {
+                buttons[i].style.backgroundColor = '#e650a0';
+            }
+
+            // klassen-Selektor 
+            var items = document.getElementsByClassName('item');
+            for (var i = 0; i < items.length; i++) {
+                items[i].style.border = '1px solid #ddd';
+            }
+
+            var colorChangeFlag = false;
+
+            function updateItemStyles() {
+                var newColor = colorChangeFlag ? 'blue' : 'red';
+                document.querySelectorAll('.item').forEach(function(item) {
+                    item.style.color = newColor;
+                });
+            }
+
+            document.getElementById('farbeAendern').addEventListener('click', function() {
+                colorChangeFlag = !colorChangeFlag;
+                updateItemStyles();
+            });
+
+            document.getElementById('elementHinzufuegen').addEventListener('click', function() {
+                var newElement = document.createElement('li');
+                newElement.className = 'item';
+                newElement.textContent = 'Ich bin neu';
+                document.getElementById('list').appendChild(newElement);
+                updateItemStyles();
+            });
+
+            // entfernen
+            document.getElementById('elementEntfernen').addEventListener('click', function() {
+                var list = document.getElementById('list');
+                if (list.children.length > 0) {
+                    list.removeChild(list.children[0]);
+                }
+            });
+
+            // elemente nach name selektieren und ändern
+            // werte textfelder anzeigen
+            document.getElementById('eingaben').addEventListener('click', function() {
+                var elements = document.getElementsByName('text-field');
+                var values = Array.from(elements).map(element => element.value).join(', ');
+                document.getElementById('eingabeWerte').textContent = 'Du hast folgendes eingegeben: ' + values;
+            });
+
+            //hier wird die gesamte seite ersetzt durch diesen text (passiert bei nem loaded dokument)
+           // document.write('<p>Dies ist ein durch document.write() hinzugefügter Text.</p>');
+        });
+
+    //hier wird der text nur unten eingefügt
+    document.write('<p>Dies ist ein durch document.write() hinzugefügter Text.</p>');
+    </script>
+</html>
