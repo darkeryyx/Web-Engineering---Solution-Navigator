@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ansicht: Monatlich</title>
+  <style>
+    table {
+      border-collapse: collapse;
+      width:100%;
+      
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 3px;
+      text-align: center;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background-color: #9caac2;
+    }
+
+    td {
+      height: 50px;
+      background-color:#94c8e3 ;
+    }
+
+    .today {
+        background-color: #e1a6c5;
+      color: rgb(45, 45, 45);
+    }
+
+    .nav {
+      /*display: flex;
+      align-items: center;
+      justify-content: space-between;*/
+      margin-bottom: 20px;
+    }
+
+    .nav button {
+      background-color: #e1a6c5;
+      color: rgb(31, 30, 30);
+      padding: 10px 20px;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      border-radius: 10px;
+    }
+
+    .vorNach{
+             
+        display: flex;
+      align-items: center;
+      justify-content: space-between;
+ 
+      
+    }
+    #aktMonat {
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .dropdown {
+      position: relative;
+      display: inline-block;
+      cursor:default;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 160px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+    }
+
+    .dropdown-content a {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      cursor: pointer;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #ddd;
+      border-radius: 10px;
+    }
+
+    .dropbtn:hover .dropdown-content {
+      display: block;
+    margin-top: 10px;
+    left: -1px;
+    border-radius: 10px;
+    cursor: pointer;
+    }
+
+    /*--------------------------------------------------------*/
+    html, body, .container {
+  width: 100%;
+  min-width: 500px;
+  min-height: 500px;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+
+  font-family: Arial, sans-serif;
+}
+
+.container {
+/*  display: flex;
+  justify-content: center;
+  align-items: center;*/
+  min-height: 100vh; /* Mindestens so hoch wie der Viewport */
+  position: relative;
+  /*background-color: #007ced;*/
+  background: linear-gradient(to bottom, #94c8e3 1%, #92afe2 20%, #e1a6c5 75%, #c981be 100%);
+  z-index: 0;
+ /* max-width: 300px;für responsive maybe*/
+}
+
+#wolkenHintergrund { /*hintergrund animieren*/
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    url(https://i.ibb.co/g9pr0Ld/clouds1000-b.png) 0 200px,
+    url(https://i.ibb.co/g9pr0Ld/clouds1000-b.png) 0px 300px,
+    url(https://i.ibb.co/NYpgsBj/clouds1000-blur-b.png) 0px 300px;
+  animation: wind 500s linear infinite;
+  z-index: -1; /*damit hintergrund hinter content ist*/
+}
+
+@keyframes wind { /*für animation der wolken*/
+  0% {
+    background-position: 0 200px, 0 300px, 100px 250px;
+  }
+  100% {
+    background-position: 1000px 200px, 1200px 300px, 1100px 250px;
+  }
+}
+
+.inhalt { /*inhalt über hintergrund*/
+margin-top: 100px;
+  position: relative;
+  z-index: 1;
+}
+/* seite
+* {
+  text-align: center;
+} */
+
+.buttons {
+  margin-top: 50px;
+}
+
+.buttons a{  
+  margin: 10px;
+}
+
+
+/* buttons */
+
+.defaultButton {
+  background-color: #d9cbdca5;
+  text-decoration: none;
+  border: 5px solid black;
+  border-radius: 15px;
+}
+
+
+/*animationsversuche*/
+
+.wolkPartsAnim {
+    position: relative;
+    display: block;
+    height: 100%;
+  
+}
+
+.wolkBtnAnim-inner {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 0;
+   border-radius: 15px;
+}
+
+.wolkenPart {
+    position: absolute;
+    top: 0;
+    width: 25%;
+    height: 100%;
+    background: #e1a6c5;
+    border-radius: 100%;
+    transform: translate3d(0,150%,0) scale(1.7);
+    transition: transform .45s;
+}
+
+.wolkenPart:nth-child(1) {
+    left: 0;
+    transition-delay: 0s;
+}
+
+.wolkenPart:nth-child(2) {
+    left: 30%;
+    transition-delay: 80ms;
+}
+
+.wolkenPart:nth-child(3) {
+    left: 60%;
+    transition-delay: .16s;
+}
+
+.wolkenPart:nth-child(4) {
+    left: 90%;
+    transition-delay: .24s;
+}
+
+.wolkBtnAnim:hover .wolkenPart {
+    transform: translate3d(0,0%,0) scale(1.7);
+}
+
+.wolkBtnAnim:hover {
+    opacity: 1;
+    border-color: #f39e59;
+}
+
+span.buttonInhalt {
+    z-index: 10;
+    position: relative;
+    color: rgb(28, 28, 28);
+    font-weight: bold;
+    
+}
+
+.wolkBtnAnim{
+    position: relative;
+    top: -80px;
+    border:none;
+    padding:10px 50px;
+   
+}
+
+.task {
+  display: block;
+  text-align: center;
+  color: white;
+  padding: 3px;
+  margin-bottom: 3px;
+  border-radius: 4px;
+  font-size: 0.8em;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  border: 1px solid #de3d93; 
+}
+
+.aufgabenDesign {
+  background-color: #e1a6c5; 
+}
+
+/*---------------------------------------------------responsive------------------------------------------------------------------------*/
+@media screen and (max-width: 800px) {
+  body {
+    font-size: 13px; 
+  }
+
+  th, td {
+    padding: 4px; 
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 502px) {
+  body{
+    background-color: #C982BE;
+   /* color:linear-gradient(to bottom, #C982BE 20%, #ca8bc1 20%, #cc98c4 20%, #cdadc8 20%);*/
+}
+
+  .buttons a, .defaultButton {
+    padding: 12px 24px; 
+    font-size: 16px;
+  }
+}
+  </style>
+</head>
+
+<body>
+    <div class="container">
+        <div id="wolkenHintergrund"></div>
+        <div class="inhalt" style="padding: 20px;">
+
+<div class="nav">
+    <div class="dropdown">
+        <div class="defaultButton wolkBtnAnim dropbtn">
+            <span class="buttonInhalt">Ansicht</span>
+            <span class="wolkBtnAnim-inner">
+                <span class="wolkPartsAnim">
+                    <span class="wolkenPart"></span>
+                    <span class="wolkenPart"></span>
+                    <span class="wolkenPart"></span>
+                    <span class="wolkenPart"></span>
+                </span>
+            </span>
+       
+ 
+        <div class="dropdown-content">
+            <a href="woechentlich.html">Wöchentlich</a>
+            <a href="auflistung.html">Auflistung</a>
+          </div> 
+        </div>
+    </div>
+        <p style="font-size: 13px;"><b>Um die Übungen zu sehen und wann sie bearbeitet wurden, navigieren Sie zwischen den Monaten. </b></p>
+  <br>
+  <div class="vorNach">
+  <button onclick="letztMonat()">Letzter Monat</button>
+  <span id="aktMonat"></span>
+  <button onclick="nächstMonat()">Nächster Monat</button>
+  </div>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>So</th>
+      <th>Mo</th>
+      <th>Di</th>
+      <th>Mi</th>
+      <th>Do</th>
+      <th>Fr</th>
+      <th>Sa</th>
+    </tr>
+  </thead>
+  <tbody id="kalender-body">
+  </tbody>
+</table>
+
+</div></div>
+</body>
+
+<script>
+  let monatAkt = new Date().getMonth();
+  let JahrAkt = new Date().getFullYear();
+
+
+  document.addEventListener("DOMContentLoaded", function () {
+    kalenderErstellen();
+    updateMonJahr();
+  });
+
+
+  let tasks = [
+    {//übungen ab KW 41 - KW03
+      name: "Übung 1",
+      start: new Date(2023, 9, 11), //monate ab 0 also Januar =0
+      dauer: 8, 
+      farbe: "#e1a6c5",
+      link: "ue1.html" // link zur zugehörigen HTML-Seite
+    },
+    {
+      name: "Übung 2 ",
+      start: new Date(2023, 9, 18),
+      dauer: 8,
+      farbe:"#9FA9E1",
+      link: "ue2.html"
+    },
+    {
+      name: "Übung 3 ",
+      start: new Date(2023, 9, 25),
+      dauer: 15,
+      farbe: "#C89FE1",
+      link: "ue3.html"
+    },
+    {
+      name: "Übung 4 ",
+      start: new Date(2023, 10, 8),
+      dauer: 8,
+      farbe: "#e1a6c5",
+      link: "ue4.html"
+    },
+    {
+      name: "Übung 5 ",
+      start: new Date(2023, 10, 15),
+      dauer: 15,
+      farbe:  "#9FA9E1",
+      link: "ue5.html"
+    },
+    {
+      name: "Übung 6 ",
+      start: new Date(2023, 10, 22),
+      dauer: 15,
+      farbe:"#C89FE1",
+      link: "ue6.html"
+    },
+    {
+      name: "Übung 7 ",
+      start: new Date(2023, 10, 29),
+      dauer: 8,
+      farbe: "#e1a6c5",
+      link: "ue7.html"
+    },
+    {
+      name: "Übung 8 ",
+      start: new Date(2023, 11, 6),
+      dauer: 8,
+      farbe: "#9FA9E1",
+      link: "ue8.html"
+    },
+    {
+      name: "Übung 9 ",
+      start: new Date(2023, 11, 13),
+      dauer: 8,
+      farbe: "#C89FE1",
+      link: "ue9.html"
+    },
+    {
+      name: "Übung 10 ",
+      start: new Date(2023, 11, 20),
+      dauer: 22,
+      farbe: "#e1a6c5",
+      link: "ue10.html"
+    },
+    {
+      name: "Übung 11 ", //KW49 2023
+      start: new Date(2024, 0, 10),
+      dauer: 8,
+      farbe: "#9FA9E1",
+      link: "ue11.html"
+    },
+    {
+      name: "Übung 12 ", 
+      start: new Date(2024, 0, 17),
+      dauer: 8,
+      farbe: "#C89FE1",
+      link: "ue12.html"
+    },
+    {
+      name: "Extras ", 
+      start: new Date(2024, 0, 24),
+      dauer: 15,
+      farbe: "#e1a6c5",
+      link: "extras.html"
+    },
+    {
+      name: "Prüfung",
+      start: new Date(2024, 1, 7),
+      dauer: 1,
+      farbe: "#ff0000 ",
+      link: "pruefung.html"
+    }
+  ];
+
+  function kalenderErstellen() {
+  const kalenderBody = document.getElementById("kalender-body");
+  const tageImMonat = new Date(JahrAkt, monatAkt + 1, 0).getDate();
+  const ersterTag = new Date(JahrAkt, monatAkt, 1).getDay();
+  let tag = 1;
+  let html = "";
+
+  for (let i = 0; i < 6; i++) {
+    let zeile = "<tr>";
+
+    for (let j = 0; j < 7; j++) {
+      if ((i === 0 && j < ersterTag) || tag > tageImMonat) {
+        zeile += "<td></td>";
+      } else {
+        const heute = tag === new Date().getDate() && monatAkt === new Date().getMonth() && JahrAkt === new Date().getFullYear();
+        let taskHtml = '';
+        tasks.forEach(task => {
+          let ende = new Date(task.start);
+          ende.setDate(ende.getDate() + task.dauer);
+
+          if (task.start <= new Date(JahrAkt, monatAkt, tag) && ende > new Date(JahrAkt, monatAkt, tag)) {
+            taskHtml += `<a href="${task.link}" class="task" style="background-color: ${task.farbe};">${task.name}</a>`;
+          }
+        });
+
+        zeile += `<td${heute ? ' class="today"' : ''}>${tag}${taskHtml}</td>`;
+        tag++;
+      }
+    }
+
+    zeile += "</tr>";
+    html += zeile;
+  }
+
+  kalenderBody.innerHTML = html;
+}
+
+
+
+
+  function updateMonJahr() {
+    const monatAktElement = document.getElementById("aktMonat");
+    const monthNames = ["Januar", "Februar", "März", "April", "May", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"];
+    monatAktElement.innerText = `${monthNames[monatAkt]} ${JahrAkt}`;
+  }
+
+  function letztMonat() {
+    monatAkt = (monatAkt - 1 + 12) % 12;
+    if (monatAkt === 11) {
+      JahrAkt--;
+    }
+    kalenderErstellen();
+    updateMonJahr();
+  }
+
+  function nächstMonat() {
+    monatAkt = (monatAkt + 1) % 12;
+    if (monatAkt === 0) {
+      JahrAkt++;
+    }
+    kalenderErstellen();
+    updateMonJahr();
+  }
+
+</script>
+
+
+</html>
