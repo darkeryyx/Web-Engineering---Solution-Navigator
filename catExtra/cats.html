@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width-device-width, initial-scale=1.0">     
+        <title> Spread operator, fetch api, dom manipulation</title>
+        <style>
+            button{
+                background-color: #ff74be;
+                padding: 15px;
+            }
+        </style>
+    </head>
+
+<body>
+<div></div>
+<br><br>
+
+<button onclick="TitelFarbeÄndern(this)">Klick mich für eine Änderung</button>
+</body>
+
+<script>
+    [...document.getElementsByTagName("button")].pop().color = "red"
+
+    fetch('cat.json').then(res => res.json()).then(jsonDaten => {
+        const divContainer = [...document.getElementsByTagName('div')].pop()
+
+        jsonDaten.forEach(item => {
+            const titel = item.titel;
+            const text = item.text;
+             const element = document.createElement('div');
+             element.innerHTML = `
+                <h2 style="color: red" class="titel">${titel}</h2>
+                <p class="text">${text}</p>
+             `;
+             divContainer.appendChild(element);
+        });
+    })
+
+    function TitelFarbeÄndern(dieserButton) {
+        let titelElemente = document.getElementsByClassName("titel");
+
+        if(dieserButton.color === 'red'){
+            [...titelElemente].forEach(titelElement => {
+                titelElement.style.color = 'blue'
+            });
+
+            dieserButton.color = 'blue';
+        } else {
+            dieserButton.color = 'red';
+            [...titelElemente].forEach(titelElement => {
+                titelElement.style.color = 'red'
+            });
+        }
+
+    }
+
+</script>
+</html>
