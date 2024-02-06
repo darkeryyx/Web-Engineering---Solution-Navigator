@@ -3,6 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
     <title>Übung 12 A 1</title>
     <style>
 
@@ -15,10 +18,12 @@
           color: #333;
           border: 1px solid #ccc;
           cursor: pointer;
-        }
-        & li:hover {
-          background-color: #eee;
-        }
+          background-color: #e2b6ce;
+          border-radius: 10px;
+      }
+      & li:hover {
+          background-color: #e493be;
+      }
         & label {
           cursor: pointer;
           padding: 10px;
@@ -48,6 +53,7 @@
           <li><label for="article1">PHP</label></li>
           <li><label for="article2">HTML</label></li>
           <li><label for="article3">JSON Datei</label></li>
+          <li><label for="article4">Ergebnis zum ausprobieren</label></li>
       </ul>
       </div>
   </nav>
@@ -59,7 +65,7 @@
       <section>
         <input type="radio" name="article" id="article1"/>
         <article>
-            <pre>
+            <pre><code>
                 &lt;!--Um Lost Updates zu vermeiden verwende ich File locking --&gt;
                 &lt;?php
                 $file_path = 'register_data.json';
@@ -103,6 +109,7 @@
                     echo "Registrierung erfolgreich!";
                 }
                 ?&gt;
+                </code>
             </pre> 
          <hr>
       </article>
@@ -112,7 +119,7 @@
       <input type="radio" name="article" id="article2"/>
       <article>
 
-    <pre>
+    <pre><code>
         &lt;!DOCTYPE html&gt;
         &lt;html lang="de"&gt;
         &lt;head&gt;
@@ -190,8 +197,9 @@
             &lt;/form&gt;
         &lt;/body&gt;
         &lt;/html&gt;
+        </code>
         </pre>
-    <br><br>
+    <hr>
   </article>
 </section>
 
@@ -200,7 +208,7 @@
   <input type="radio" name="article" id="article3"/>
   <article>
     <p>Hier sind ein paar Beispiel Daten:</p>
-    <pre>
+    <pre><code>
         [
         {
             "vorname": "test3",
@@ -233,11 +241,18 @@
             "passwort": "$2y$10$YRlhlowS1fGJ\/LQ9915LYeqoIEWqTtQl5\/FK.Mcb\/DgMW7019p2Gy"
         }
     ]
+    </code>
     </pre>
     <hr>
   </article>
 </section>
-
+<section>
+  <input type="radio" name="article" id="article4"/>
+  <article>
+    <a href="/php/registrierenHtml.php"> Klick hier um dich zu registrieren</a>
+    <hr>
+  </article>
+</section>
 
 
   </main>
