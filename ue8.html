@@ -3,6 +3,9 @@
     <head>
         <meta charset="utf8">
         <meta name="viewport" content="width-device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script>
         <title>
             Übung 8
         </title>
@@ -33,9 +36,11 @@
                 color: #333;
                 border: 1px solid #ccc;
                 cursor: pointer;
+                background-color: #e2b6ce;
+                border-radius: 10px;
               }
               & li:hover {
-                background-color: #eee;
+                background-color: #e493be;
               }
               & label {
                 cursor: pointer;
@@ -74,11 +79,6 @@
             </ul>
             </div>
         </nav>
-
-        
-       <!--<a href="ue8_1.html">Aufgabe 8.1</a>
-        <a href="ue8_2.html">Aufgabe 8.2</a>
-        <a href="ue8_3.html">Aufgabe 8.3</a>-->
         <hr>
     </header>
 
@@ -114,8 +114,8 @@
                 <p><ins>Meine Code-Lösung:</ins></p>
 
                     <pre>
-
-                        &lt;!DOCTYPE html&gt;
+                      <code>
+&lt;!DOCTYPE html&gt;
 &lt;head&gt;
   &lt;meta charset="UTF-8"&gt;
   &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
@@ -173,6 +173,7 @@
   &lt;/script&gt;
 
 &lt;/html&gt;
+</code>
 </pre>
 </article2>
 </section>
@@ -183,6 +184,7 @@
     <article2>
 
           <div id="output"></div>
+          <a href="ue8_1.html"  style="background-color: rgb(224, 169, 219);">Hier ist das Ergebnis zusätzlich der dafür vorhergesehenen HTML Datei</a>
         
 </article2>
 </section>
@@ -261,6 +263,7 @@ BBBBBBBBBB
                 <p><ins>Meine Code-Lösung:</ins></p>
 
                     <pre>
+                      <code>
                         &lt;!DOCTYPE html&gt;
                         &lt;head&gt;
                           &lt;meta charset="UTF-8"&gt;
@@ -314,10 +317,7 @@ BBBBBBBBBB
                             zsmfuegen('http://localhost:8000/A.txt', 'http://localhost:8000/B.txt');
                           &lt;/script>
                         &lt;/html>
-                        
-
-
-     
+    </code>
 </pre>
 </article3>
 </section>
@@ -328,6 +328,7 @@ BBBBBBBBBB
     <article3>
 
           <p>Das Ergebnis ist identisch mit dem Ergebnis von Aufgabe 1</p>
+          <a href="ue8_2.html">Um das Ergebnis für die Aufgabe zu sehen klicke hier (Extra Datei für die Aufgabe)</a>
         
 </article3>
 </section>
@@ -373,12 +374,6 @@ BBBBBBBBBB
           </article>
         </section>
 
-
-
-
-
-
-
         <section>
         <input type="radio" name="article" id="article3"/>
         <article>
@@ -408,6 +403,7 @@ BBBBBBBBBB
               <p><ins>Meine Code-Lösung:</ins></p>
 
                   <pre>
+                    <code>
 &lt;!DOCTYPE html&gt;
 &lt;html&gt;
     &lt;head&gt;
@@ -512,12 +508,7 @@ BBBBBBBBBB
         }
     &lt;/script&gt;
 &lt;/html&gt;
-        
-
-    
-                             
-
-   
+</code>
 </pre>
 </article4>
 </section>
@@ -527,52 +518,13 @@ BBBBBBBBBB
   <input type="radio" name="article3" id="article33"/>
   <article4>
 
-        <a href="ue8_3.html">Um das Ergebnis zu sehen klicke hier.</a>
+        <a href="ue8_3.html">Um das Ergebnis zu sehen klicke hier.</a><br><br>
+        <a href="ue8_3.json">Hier gelangt Ihr zur JSON Datei der Aufgabe</a>
       
 </article4>
 </section>
-
-
-       
         </article>
       </section>
-
-
-
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     </body>
     <script>
         function fetchData(file) {

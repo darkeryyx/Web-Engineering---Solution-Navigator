@@ -18,7 +18,7 @@
           throw new Error(`Fetch fehlgeschlagen ${datei}`);
         }
 
-        return await response.text();
+        return response.text();
       } catch (error) {
         throw error;
       }
@@ -28,16 +28,14 @@
       const outputDiv = document.getElementById('output');
 
       try {
-        // Fetch both files in parallel using async/await
-        const inhaltA = await fetchData(dA);
-        const inhaltB = await fetchData(dB);
+        const inhaltA = fetchData(dA);
+        const inhaltB = fetchData(dB);
 
-        const zA = inhaltA.split('\n');
-        const zB = inhaltB.split('\n');
+        const zA =(await inhaltA).split('\n');
+        const zB = (await inhaltB).split('\n');
 
-        // Concatenate lines and display
         zA.forEach((a, index) => {
-          const b = zB[index] || ''; // Handle uneven line counts
+          const b = zB[index] || ''; 
           const zsm = a + ' ' + b;
           const elem = document.createElement('p');
           elem.textContent = zsm;
