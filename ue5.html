@@ -3,6 +3,11 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--UM CODE SCHÖNER DARZUSTELLEN-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+
     <title>Übung 5</title>
     <style>
         li {
@@ -26,9 +31,11 @@
           color: #333;
           border: 1px solid #ccc;
           cursor: pointer;
+          background-color: #e2b6ce;
+          border-radius: 10px;
         }
         & li:hover {
-          background-color: #eee;
+          background-color: #e493be;
         }
         & label {
           cursor: pointer;
@@ -54,7 +61,7 @@
           <ul>
               <li><label for="article1">Aufgabe</label></li>
               <li><label for="article2">Implementierung</label></li>
-              <li><label for="article3">Ergebnis</label></li>
+              <li><label for="article3">Ergebnis & zum Ausprobieren</label></li>
           </ul>
           </div>
       </nav>
@@ -99,7 +106,8 @@
     <p><ins>Meine Code-Lösung um die Rednerliste zu bauen: </ins></p>
 
     <pre>
-      &lt;!DOCTYPE html&gt;
+      <code>
+&lt;!DOCTYPE html&gt;
 &lt;html&gt;
   &lt;head&gt;
     &lt;meta charset="utf-8"&gt;
@@ -213,8 +221,8 @@
       }
     &lt;/script&gt;
     &lt;/html&gt;
-    </pre>
-
+ 
+  </code></pre>
 
 
 
@@ -226,6 +234,13 @@
 
     <script>
       function neuerRedner() {
+        //keine leeren angaben
+        const rednerName = document.getElementById("redner").value.trim();
+          if (rednerName === "") {
+            alert("Bitte geben Sie einen Namen ein.");
+            return;
+          }
+
         stoppeAndereTimer();
         const neuerR = document.createElement("li"); //erzeugt neues listenelement
         const neuerRNode = document.createTextNode(document.getElementById("redner").value); //text wird festgelegt

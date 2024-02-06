@@ -3,6 +3,9 @@
     <head>
         <meta charset="utf8">
         <meta name="viewport" content="width-device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script>
         <title>
             Übung 2 Lösungen
         </title>
@@ -16,9 +19,11 @@
                 color: #333;
                 border: 1px solid #ccc;
                 cursor: pointer;
+                background-color: #e2b6ce;
+                border-radius: 10px;
               }
               & li:hover {
-                background-color: #eee;
+                background-color: #e493be;
               }
               & label {
                 cursor: pointer;
@@ -59,7 +64,6 @@
         </p>
         <p><ins>Mein Repo:</ins></p>
         <a href="https://github.com/darkeryyx/webEng">Klick hier um zu meiner Repo zu gelangen</a>
-        <hr>
         </article>
       </section>
 
@@ -76,7 +80,7 @@
             <li>Iul#primary-nav li.active</li>
         </ol>
         <p><ins>Meine Lösung: </ins></p>
-        <table border="2"> <!--Tabelle iwann schöner machen-->
+        <table border="2"> 
             <tr>
                 <th><b>CSS-Selektoren</b></th>
                 <th><b>Spezifität</b></th>
@@ -103,7 +107,7 @@
                 <td>1,1,2</td>
             </tr>
         </table>
-        <br>
+        <br><hr>
         <p> Rechnen Sie folgende RGB-Werte mit den DevTools des Webbrowsers in HSL-Werte um: </p>
         <ol>
             <li>#ffffff</li>
@@ -114,7 +118,7 @@
             
         </ol>
         <p><ins>Meine Lösung: </ins></p>
-        <table border="2"> <!--Tabelle iwann schöner machen-->
+        <table border="2"> 
             <tr>
                 <th><b>RGB-Werte</b></th>
                 <th><b>HSL-Werte</b></th>
@@ -155,13 +159,15 @@
             <li><a href="https://www.youtube.com/watch?v=HVmnv3k4__E">2. Video "Img Checkbox"</a></li>
         </ul>
         <p>Arbeiten Sie in beiden Fällen nur mit HTML und CSS, ohne JavaScript.</p>
-
+        <hr>
         <p><ins>Meine Lösung zum 1. Video: </ins></p>
-        <p>Hier ein kleiner Ausschnitt: <a href="ue22_3.html">Um es in Vollbild zu sehen klicken Sie hier</a> </p>
-        <iframe src="ue22_3.html" title="Sticky Header Ausschnitt"></iframe>
+        <a href="ue22_3.html"  style="background-color: rgb(224, 169, 219);"><b>Um sich das folgende Verhalten auf einer eigenen Seite anzusehen klicken Sie hier</b></a> </p>
+        <p>Hier in klein als Iframe: </p>
+        <iframe src="ue22_3.html" title="Sticky Header Ausschnitt" width="600" height="500"></iframe>
         
         <p><ins>Meine Code-Lösung zum 1.Video: </ins></p>
         <pre>
+            <code>
         &lt;!DOCTYPE html&gt;
         &lt;html&gt;
         &lt;head&gt;
@@ -266,16 +272,18 @@
 &lt;/section&gt;   
 &lt;/body&gt;
 &lt;/html&gt;
-        
+            </code>
         </pre>
         <hr>
 
     <p><ins>Meine Lösung zum 2. Video: </ins></p>
-        <p>Hier ein kleiner Ausschnitt: <a href="ue22_3_2.html">Um es in Vollbild zu sehen klicken Sie hier</a> </p>
-        <iframe src="ue22_3_2.html" title="img checkbox"></iframe>
+        <a href="ue22_3_2.html" style="background-color: rgb(224, 169, 219);"><b>Um sich das folgende Verhalten auf einer eigenen Seite anzusehen klicken Sie hier</b></a> 
+        <p>Hier in klein als Iframe: </p>
+        <iframe src="ue22_3_2.html" title="img checkbox" width="700" height="500"></iframe>
         
-        <p><ins>Meine Code-Lösung zum 2.Video: </ins></p>
-        <pre>
+    <p><ins>Meine Code-Lösung zum 2.Video: </ins></p>
+    <pre>
+    <code>
     &lt;!DOCTYPE html&gt;
     &lt;html&gt;
     &lt;head&gt;
@@ -308,7 +316,7 @@
     
     &lt;/body&gt;
 &lt;/html&gt;
-    
+    </code>
     </pre>
 </article>
     </section>
@@ -321,12 +329,14 @@
         <p>Die Aufgabe bestand darin, ein gegebenes Wireframe exakt nachzubauen, mit CSS und HTML.</p>
 
         <p><ins>Meine Lösung: </ins></p>
-        <p>Hier ein kleiner Ausschnitt: <a href="ue2_24.html">Um es in Vollbild zu sehen klicken Sie hier</a> </p>
-        <iframe src="ue2_24.html" width="700" height="300" title="wireframe"></iframe>
+        <a href="ue2_24.html" style="background-color: rgb(224, 169, 219);"><b>Um sich das Wireframe auf einer eigenen Seite anzusehen klicken Sie hier</b></a> 
+        <p>Hier in klein als Iframe: </p>
+        <iframe src="ue2_24.html" width="700" height="500" title="wireframe"></iframe>
         
         <p><ins>Meine Code-Lösung: </ins></p>
         <pre>
-            &lt;!DOCTYPE html&gt; 
+            <code>
+&lt;!DOCTYPE html&gt; 
 &lt;html&gt; 
     &lt;head&gt; 
         &lt;meta charset="utf8"&gt; 
@@ -482,10 +492,9 @@
                
                         &lt;/table&gt;    	
               &lt;/form&gt;      
-
-
       &lt;/body&gt; 
-      &lt;/html&gt;      
+      &lt;/html&gt; 
+            </code>     
         </pre>
     </article>
     </section>

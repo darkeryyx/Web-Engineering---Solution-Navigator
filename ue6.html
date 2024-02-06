@@ -3,6 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
     <title>Klammerpaar-Prüfer</title>
     <style>
       .error {
@@ -11,14 +14,14 @@
       }
 
       li {
-            margin-bottom: 5px; /*abstand zw rednern*/
+            margin-bottom: 5px; 
         }
         .timer-container {
-            display: inline-block; /*timer wird neben redner angezeigt*/
+            display: inline-block; 
             margin-left: 5px;
         }
         .timer-container div {
-            display: inline-block; /*button neben zeit*/
+            display: inline-block; 
             margin-right: 5px;
         }
 
@@ -31,9 +34,11 @@
           color: #333;
           border: 1px solid #ccc;
           cursor: pointer;
+          background-color: #e2b6ce;
+          border-radius: 10px;
         }
         & li:hover {
-          background-color: #eee;
+          background-color: #e493be;
         }
         & label {
           cursor: pointer;
@@ -59,7 +64,7 @@
       <ul>
           <li><label for="article1">Aufgabe</label></li>
           <li><label for="article2">Implementierung</label></li>
-          <li><label for="article3">Ergebnis</label></li>
+          <li><label for="article3">Ergebnis zum Ausprobieren</label></li>
       </ul>
       </div>
   </nav>
@@ -96,7 +101,8 @@
     <p><ins>Meine Code-Lösung um den Klammerpaar-Prüfer zu bauen: </ins></p>
 
     <pre>
-      &lt;!DOCTYPE html&gt;
+    <code>
+&lt;!DOCTYPE html&gt;
 &lt;html&gt;
   &lt;head&gt;
     &lt;meta charset="utf-8"&gt;
@@ -162,13 +168,11 @@
             console.assert(checkKlammern("{[()]") ===false, "Test Case 3 Failed");
          &lt;/script&gt;
 &lt;/html&gt;
+    </code>
     </pre>
     <hr>
   </article>
 </section>
-
-
-
   </main>
   </body>
   
