@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+
+    table {           
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    th, td {
+      border: 1px solid #e7e7e7;
+      padding: 8px;
+      text-align: center;
+    }
+
+    th {
+      background-color:  #9caac2;
+    }
+
+    td {
+      height: 80px;
+      background-color:#94c8e3 ;
+    }
+
+    .today {
+      background-color: #e1a6c5;
+      color: rgb(45, 45, 45);
+    }
+
+    .nav {
+      /*display: flex;
+      align-items: center;
+      justify-content: space-between;*/
+      margin-bottom: 20px;
+    }
+
+    .nav button {
+      background-color: #e1a6c5;
+      color: rgb(31, 30, 30);
+      padding: 10px 20px;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      border-radius: 10px;
+    }
+
+    .vorNach{
+        display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    #current-month {
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .dropdown {
+      position: relative;
+      display: inline-block;
+      cursor:default;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 160px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+    }
+
+    .dropdown-content a {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      cursor: pointer;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #ddd;
+      border-radius: 10px;
+    }
+
+    .dropbtn:hover .dropdown-content {
+      display: block;
+      margin-top: 10px;
+      left: -1px;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    .task-link {
+      text-decoration: none;
+      display: block;
+      padding: 5px;
+      margin: 4px 0; 
+      border: 1px solid #de3d93; 
+      border-radius: 5px; 
+    }
+
+
+/*---------------------------------------------------------------*/
+html, body, .container {
+  width: 100%;
+  height: 100%;
+  min-width: 500px;
+  min-height: 500px;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  /*display: flex;
+  justify-content: center;
+  align-items: center;*/
+  position: relative;
+  /*background-color: #007ced;*/
+  background: linear-gradient(to bottom, #94c8e3 1%, #92afe2 20%, #e1a6c5 75%, #c981be 100%);
+  z-index: 0;
+ /* max-width: 300px;für responsive maybe*/
+}
+
+#wolkenHintergrund { /*hintergrund animieren*/
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    url(https://i.ibb.co/g9pr0Ld/clouds1000-b.png) 0 200px,
+    url(https://i.ibb.co/g9pr0Ld/clouds1000-b.png) 0px 300px,
+    url(https://i.ibb.co/NYpgsBj/clouds1000-blur-b.png) 0px 300px;
+  animation: wind 500s linear infinite;
+  z-index: -1; /*damit hintergrund hinter content ist*/
+}
+
+@keyframes wind { /*für animation der wolken*/
+  0% {
+    background-position: 0 200px, 0 300px, 100px 250px;
+  }
+  100% {
+    background-position: 1000px 200px, 1200px 300px, 1100px 250px;
+  }
+}
+
+.inhalt { /*inhalt über hintergrund*/
+margin-top: 100px;
+  position: relative;
+  z-index: 1;
+}
+/* seite
+* {
+  text-align: center;
+} */
+
+.buttons {
+  margin-top: 50px;
+}
+
+.buttons a{
+  margin: 10px;
+}
+
+
+/* buttons */
+.defaultButton {
+  background-color: #d9cbdca5;
+  text-decoration: none;
+  border: 5px solid black;
+  border-radius: 15px;
+}
+
+
+/*animationsversuche*/
+.wolkPartsAnim {
+    position: relative;
+    display: block;
+    height: 100%;
+  
+}
+
+.wolkBtnAnim-inner {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 0;
+   border-radius: 15px;
+}
+
+.wolkenPart {
+    position: absolute;
+    top: 0;
+    width: 25%;
+    height: 100%;
+    background: #e1a6c5;
+    border-radius: 100%;
+    transform: translate3d(0,150%,0) scale(1.7);
+    transition: transform .45s;
+}
+
+.wolkenPart:nth-child(1) {
+    left: 0;
+    transition-delay: 0s;
+}
+
+.wolkenPart:nth-child(2) {
+    left: 30%;
+    transition-delay: 80ms;
+}
+
+.wolkenPart:nth-child(3) {
+    left: 60%;
+    transition-delay: .16s;
+}
+
+.wolkenPart:nth-child(4) {
+    left: 90%;
+    transition-delay: .24s;
+}
+
+.wolkBtnAnim:hover .wolkenPart { /*buttons animation*/
+    transform: translate3d(0,0%,0) scale(1.7);
+}
+
+.wolkBtnAnim:hover {
+    opacity: 1;
+    border-color: #f39e59;
+}
+
+span.buttonInhalt {
+    z-index: 10;
+    position: relative;
+    color: rgb(28, 28, 28);
+    font-weight: bold;
+    
+}
+
+.wolkBtnAnim{
+    position: relative;
+    top: -80px;
+    border:none;
+    padding:10px 50px;
+}
+
+.task-link {
+  text-decoration: underline; /*  unterstreichung */
+}
+
+/*----------------------------------reesponsiveeeeeeee---------------*/
+
+@media screen and (max-width: 555px) {
+    body{
+    background-color: #C982BE;
+   /* color:linear-gradient(to bottom, #C982BE 20%, #ca8bc1 20%, #cc98c4 20%, #cdadc8 20%);*/
+}
+
+table {
+  border-collapse: collapse;
+  width:100%;
+  
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 5px;
+  text-align: center;
+  text-align: left;
+  vertical-align: top;
+}
+
+th {
+  background-color: #9caac2;
+}
+
+td {
+  height: 40px;
+  background-color:#94c8e3 ;
+}
+}
+
+
+  </style>
+  <title>Interactive Calendar</title>
+</head>
+<body>
+      <div class="container">
+            <div id="wolkenHintergrund"></div>
+            <div class="inhalt" style="padding: 20px;">
+
+    <div class="nav">
+        <div class="dropdown" >
+            <div class="defaultButton wolkBtnAnim dropbtn" >
+                <span class="buttonInhalt">Ansicht</span>
+                <span class="wolkBtnAnim-inner">
+                    <span class="wolkPartsAnim">
+                        <span class="wolkenPart"></span>
+                        <span class="wolkenPart"></span>
+                        <span class="wolkenPart"></span>
+                        <span class="wolkenPart"></span>
+                    </span>
+                </span>
+            
+
+            <div class="dropdown-content">
+                <a href="monatlich.html">Monatlich</a>
+                <a href="auflistung.html">Auflistung</a>
+            </div>
+          </div>
+        </div>
+        <p><b>Um die Übungen zu sehen und wann sie bearbeitet wurden, navigieren Sie zwischen den Wochen.</b></p>
+      <br>
+        <div class="vorNach">
+            <button onclick="letzte()">Letzte Woche</button>
+            <span id="aktRange"></span>
+            <button onclick="naechste()">Nächste Woche</button>
+        </div>
+    </div>
+   
+    
+    <h2 id="aktWoche" style="text-align: center;">Kalenderwoche: </h2>
+    
+    <table>
+      <thead>
+        <tr>
+          <th>Mo</th>
+          <th>Di</th>
+          <th>Mi</th>
+          <th>Do</th>
+          <th>Fr</th>
+          <th>Sa</th>
+          <th>So</th>
+        </tr>
+      </thead>
+      <tbody id="kalenderBody">
+      </tbody>
+    </table>
+       </div>
+    </div>
+    </body>  
+
+
+
+    <script>
+      let startWoche = new Date(); // start woche
+      let endeWoche = new Date();   // ende woche
+    
+      document.addEventListener("DOMContentLoaded", function () {
+        setStartWoche(startWoche);
+        setEndeWoche(endeWoche);
+        erstelleKalender();
+        updateRange();
+        updateAktWoche();
+      });
+    
+      function setStartWoche(datum) {
+        datum.setHours(0, 0, 0, 0);
+        datum.setDate(datum.getDate() - (datum.getDay() + 6) % 7);
+      }
+    
+      function setEndeWoche(datum) {
+        datum.setHours(23, 59, 59, 999);
+        datum.setDate(datum.getDate() + (7 - (datum.getDay() === 0 ? 7 : datum.getDay())));
+      }
+
+let tasks = [
+    {//übungen ab KW 41 - KW03
+      name: "Übung 1",
+      startDatum: new Date(2023, 9, 11), 
+      dauer: 8, 
+      farbe: "#e1a6c5",
+      link: "ue1.html" 
+    },
+    {
+      name: "Übung 2 ",
+      startDatum: new Date(2023, 9, 18),
+      dauer: 8,
+      farbe: "#e1a6c5",
+      link: "ue2.html"
+    },
+    {
+      name: "Übung 3 ",
+      startDatum: new Date(2023, 9, 25),
+      dauer: 16,
+      farbe: "#e1a6c5",
+      link: "ue3.html"
+    },
+    {
+      name: "Übung 4 ",
+      startDatum: new Date(2023, 10, 8),
+      dauer: 8,
+      farbe: "#e1a6c5",
+      link: "ue4.html"
+    },
+    {
+      name: "Übung 5 ",
+      startDatum: new Date(2023, 10, 15),
+      dauer: 15,
+      farbe: "#e1a6c5",
+      link: "ue5.html"
+    },
+    {
+      name: "Übung 6 ",
+      startDatum: new Date(2023, 10, 22),
+      dauer: 15,
+      farbe: "#e1a6c5",
+      link: "ue6.html"
+    },
+    {
+      name: "Übung 7 ",
+      startDatum: new Date(2023, 10, 29),
+      dauer: 8,
+      farbe: "#e1a6c5",
+      link: "ue7.html"
+    },
+    {
+      name: "Übung 8 ",
+      startDatum: new Date(2023, 11, 6),
+      dauer: 8,
+      farbe: "#e1a6c5",
+      link: "ue8.html"
+    },
+    {
+      name: "Übung 9 ",
+      startDatum: new Date(2023, 11, 13),
+      dauer: 8,
+      farbe: "#e1a6c5",
+      link: "ue9.html"
+    },
+    {
+      name: "Übung 10 ",
+      startDatum: new Date(2023, 11, 20),
+      dauer: 22,
+      farbe: "#e1a6c5",
+      link: "ue10.html"
+    },
+    {
+      name: "Übung 11 ", //KW49 2023
+      startDatum: new Date(2024, 0, 10),
+      dauer: 8,
+      farbe: "#e1a6c5",
+      link: "ue11.html"
+    },
+    {
+      name: "Übung 12 ", 
+      startDatum: new Date(2024, 0, 17),
+      dauer: 8,
+      farbe: "#e1a6c5",
+      link: "ue12.html"
+    },
+    {
+      name: "Extras ",
+      startDatum: new Date(2024, 0, 24),
+      dauer: 15,
+      farbe: "#e1a6c5",
+      link: "extras.html"
+    },
+    {
+      name: "Prüfung", 
+      startDatum: new Date(2024, 1, 7),
+      dauer: 1,
+      farbe: "#ff0000 ",
+      link: "pruefung.html"
+    }
+  ];
+
+  function erstelleKalender() {
+  const kalender = document.getElementById("kalenderBody");
+  kalender.innerHTML = ""; // löschen vom vorherigen Inhalt
+
+  let html = "";
+  let datum = new Date(startWoche);
+
+  for (let i = 0; i < 7; i++) { // 7 tage der woche
+    let taskHtmls = [];
+    tasks.forEach(task => {
+      if (datum >= task.startDatum && datum <= new Date(task.startDatum.getTime() + (task.dauer - 1) * 86400000)) {
+          taskHtmls.push(`<a href="${task.link}" class="task-link" style="background-color: ${task.farbe}; display: block; color: white; padding: 5px;">${task.name}</a>`);
+      }
+    });
+
+    const istHeute = datum.toDateString() === new Date().toDateString();
+    let tasksHtml = taskHtmls.join('');
+    html += `<td${istHeute ? ' class="today"' : ''}>${datum.getDate()}${tasksHtml}</td>`;
+    datum.setDate(datum.getDate() + 1);
+  }
+
+  kalender.innerHTML = `<tr>${html}</tr>`;
+}
+
+      function updateRange() {
+        const aktRangeElement = document.getElementById("aktRange");
+        const wochenStart = startWoche.toLocaleDateString();
+        const wochenEnde = endeWoche.toLocaleDateString();
+        aktRangeElement.innerText = `${wochenStart} - ${wochenEnde}`;
+      }
+    
+      function updateAktWoche() {
+        const aktWochenElement = document.getElementById("aktWoche");
+        const WocheAkt = getWochenNr(startWoche);
+        aktWochenElement.innerText = `Calendar Week: ${WocheAkt}`;
+      }
+    
+      function getWochenNr(datum) {
+        const d = new Date(Date.UTC(datum.getFullYear(), datum.getMonth(), datum.getDate()));
+        d.setUTCDate(d.getUTCDate() + 4 - (d.getUTCDay() + 6) % 7); // verschiebung auf montag
+        const jahrStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
+        return Math.ceil((((d - jahrStart) / 86400000) + 1) / 7);
+      }
+    
+      function letzte() {
+        startWoche.setDate(startWoche.getDate() - 7);
+        endeWoche.setDate(endeWoche.getDate() - 7);
+        setStartWoche(startWoche);
+        setEndeWoche(endeWoche);
+        erstelleKalender();
+        updateRange();
+        updateAktWoche();
+      }
+    
+      function naechste() {
+        startWoche.setDate(startWoche.getDate() + 7);
+        endeWoche.setDate(endeWoche.getDate() + 7);
+        setStartWoche(startWoche);
+        setEndeWoche(endeWoche);
+        erstelleKalender();
+        updateRange();
+        updateAktWoche();
+      }
+
+    </script>
+</html>
