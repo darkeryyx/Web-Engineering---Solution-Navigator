@@ -6,21 +6,224 @@
         <title>
             Startseite Solution Navigator
         </title>
+        <style>
+html, body, .container {
+  width: 100%;
+  height: 100%;
+  min-width: 500px;
+  min-height: 500px;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.container {
+  /*display: flex;
+  justify-content: center;
+  align-items: center;*/
+  position: relative;
+  /*background-color: #007ced;*/
+  background: linear-gradient(to bottom, #94c8e3 1%, #92afe2 20%, #e1a6c5 75%, #c981be 100%);
+  z-index: 0;
+}
+
+#wolkenHintergrund { /*hintergrund animieren*/
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    url(https://i.ibb.co/g9pr0Ld/clouds1000-b.png) 0 200px,
+    url(https://i.ibb.co/g9pr0Ld/clouds1000-b.png) 0px 300px,
+    url(https://i.ibb.co/NYpgsBj/clouds1000-blur-b.png) 0px 300px;
+  animation: wind 100s linear infinite;
+  z-index: -1; /*damit hintergrund hinter content ist*/
+}
+
+@keyframes wind { /*für animation der wolken*/
+  0% {
+    background-position: 0 200px, 0 300px, 100px 250px;
+  }
+  100% {
+    background-position: 1000px 200px, 1200px 300px, 1100px 250px;
+  }
+}
+
+.inhalt { /*inhalt über hintergrund*/
+margin-top: 250px;
+  position: relative;
+  z-index: 1;
+}
+/* seite */
+* {
+  text-align: center;
+}
+
+.buttons {
+  margin-top: 50px;
+}
+
+.buttons a{
+  margin: 10px;
+}
+
+
+/* buttons */
+
+.defaultButton {
+  background-color: #d9cbdccd;
+  text-decoration: none;
+  border: 5px solid black;
+  border-radius: 15px;
+}
+
+
+/*animationsversuche*/
+
+.wolkPartsAnim {
+    position: relative;
+    display: block;
+    height: 100%;
+  
+}
+
+.wolkBtnAnim-inner {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 0;
+   border-radius: 15px;
+}
+
+.wolkenPart {
+    position: absolute;
+    top: 0;
+    width: 25%;
+    height: 100%;
+    background: #e1a6c5;
+    border-radius: 100%;
+    transform: translate3d(0,150%,0) scale(1.7);
+    transition: transform .45s;
+}
+
+.wolkenPart:nth-child(1) {
+    left: 0;
+    transition-delay: 0s;
+}
+
+.wolkenPart:nth-child(2) {
+    left: 30%;
+    transition-delay: 80ms;
+}
+
+.wolkenPart:nth-child(3) {
+    left: 60%;
+    transition-delay: .16s;
+}
+
+.wolkenPart:nth-child(4) {
+    left: 90%;
+    transition-delay: .24s;
+}
+
+.wolkBtnAnim {
+    position: relative;
+}
+
+.wolkBtnAnim:hover .wolkenPart { /*buttons animation*/
+    transform: translate3d(0,0%,0) scale(1.7);
+}
+
+.wolkBtnAnim:hover {
+    opacity: 1;
+    border-color: #f39e59;
+}
+
+span.buttonInhalt {
+    z-index: 10;
+    position: relative;
+    color: rgb(28, 28, 28);
+    font-weight: bold;
+}
+
+.wolkBtnAnim{
+    border:none;
+    padding: 1.1rem 5rem!important;
+}
+
+/*--------------------------responsive------------------------*/
+
+@media screen and (max-width: 780px) {
+    body{
+      display: flex;
+    background-color: #C982BE;
+   /* color:linear-gradient(to bottom, #C982BE 20%, #ca8bc1 20%, #cc98c4 20%, #cdadc8 20%);*/
+}
+
+.buttons a {
+    display: block;
+    margin: 10px auto; 
+  }
+
+  .buttons {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+  }
+}
+        </style>
     </head>
 
     <body>
-        <h1 align="center">Mein Solution Navigator</h1>
-        <a href="ue1.html">Übung 1</a>
-        <a href="ue2.html">Übung 2</a>
-        <a href="ue3.html">Übung 3</a>
-        <a href="ue4.html">Übung 4</a>
-        <a href="ue5.html">Übung 5</a>
-        <a href="ue6.html">Übung 6</a>
-        <!--UE7 HTML MACHEN!!!!-->
-        <a href="ue7.js">Übung 7</a>
-        <a href="ue7_2.js">Übung 7.2</a>
-        <a href="ue8.html">Übung 8</a>
-        <a href="ue9.html">Übung 9</a>
+        <div class="container">
+            <div id="wolkenHintergrund"></div>
+          
+            <div class="inhalt">
+                <h1>Mein Solution-Navigator</h1>
+                <p><b>Wähle eine Ansicht:</b></p>
+                <section class="buttons">
+                <a class="defaultButton wolkBtnAnim" href="woechentlich.html">
+                    <span class="buttonInhalt">Wöchentlich</span>
+                    <span class="wolkBtnAnim-inner">
+                        <span class="wolkPartsAnim">
+                            <span class="wolkenPart"></span>
+                            <span class="wolkenPart"></span>
+                            <span class="wolkenPart"></span>
+                            <span class="wolkenPart"></span>
+                        </span>
+                    </span>
+                </a>
+            
+                <a class="defaultButton wolkBtnAnim" href="monatlich.html">
+                    <span class="buttonInhalt">Monatlich</span>
+                    <span class="wolkBtnAnim-inner">
+                        <span class="wolkPartsAnim">
+                            <span class="wolkenPart"></span>
+                            <span class="wolkenPart"></span>
+                            <span class="wolkenPart"></span>
+                            <span class="wolkenPart"></span>
+                        </span>
+                    </span>
+                </a>
+
+                <a class="defaultButton wolkBtnAnim" href="auflistung.html">
+                    <span class="buttonInhalt">Auflistung</span>
+                    <span class="wolkBtnAnim-inner">
+                        <span class="wolkPartsAnim">
+                            <span class="wolkenPart"></span>
+                            <span class="wolkenPart"></span>
+                            <span class="wolkenPart"></span>
+                            <span class="wolkenPart"></span>
+                        </span>
+                    </span>
+                </a>
+                </section>
+            </div>
+          </div>             
     </body>
 </html>
         
