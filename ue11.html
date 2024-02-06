@@ -3,8 +3,11 @@
     <head>
         <meta charset="utf8">
         <meta name="viewport" content="width-device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script>
         <title>
-            Übung 2 Lösungen
+            Übung 11 Lösungen
         </title>
         <style>
             .auswahl ul {
@@ -16,9 +19,11 @@
                 color: #333;
                 border: 1px solid #ccc;
                 cursor: pointer;
+                background-color: #e2b6ce;
+                border-radius: 10px;
               }
               & li:hover {
-                background-color: #eee;
+                background-color: #e493be;
               }
               & label {
                 cursor: pointer;
@@ -55,7 +60,8 @@
             dann mit einem Gruß antwortet. Beispiel: Der Client sendet "Mika" und der Server antwortet mit "Hallo Mika!".
         </p>
         <p><ins>Meine Lösung:</ins></p>
-            <pre>const http = require('http');
+            <pre><code>
+                const http = require('http');
                 const url = require('url');
                 
                 const server = http.createServer((anfrage, antwort) => {
@@ -66,7 +72,7 @@
                         antwort.end(`Hallo ${abfrageObjekt.name}!`);
                     } else {
                         antwort.writeHead(404, {'Content-Type': 'text/plain'});
-                        antwort.end('Keiner zum grueßen da');
+                        antwort.end('Keiner zum gruessen da');
                     }
                 });
                 
@@ -74,14 +80,12 @@
                 server.listen(PORT, () => {
                     console.log(`Der Server läuft auf http://localhost:${PORT}`);
                 });
+                </code>
                 </pre>
-        
+               <a href="ue11_1.js" style="background-color: rgb(224, 169, 219);">Um zur JS Datei zu gelangen klicke hier</a>
         </article>
       </section>
-
-
 <hr>
-
 </main>
     </body>
     </html> 

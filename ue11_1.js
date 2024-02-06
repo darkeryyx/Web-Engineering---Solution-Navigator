@@ -9,7 +9,7 @@ const server = http.createServer((anfrage, antwort) => {
         antwort.end(`Hallo ${abfrageObjekt.name}!`);
     } else {
         antwort.writeHead(404, {'Content-Type': 'text/plain'});
-        antwort.end('Keiner zum grueßen da');
+        antwort.end('Keiner zum gruessen da');
     }
 });
 
