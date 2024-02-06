@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf8">
+        <meta name="viewport" content="width-device-width, initial-scale=1.0">
+        <title>
+            Ansicht: Auflistung
+        </title>
+        <style>
+html, body, .container {
+  width: 100%;
+  height: 100%;
+  min-width: 500px;
+  min-height: 500px;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  /*display: flex;
+  justify-content: center;
+  align-items: center;*/
+  position: relative;
+  /*background-color: #007ced;*/
+  background: linear-gradient(to bottom, #94c8e3 1%, #92afe2 20%, #e1a6c5 75%, #c981be 100%);
+  z-index: 0;
+}
+
+#wolkenHintergrund { /*hintergrund animieren*/
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    url(https://i.ibb.co/g9pr0Ld/clouds1000-b.png) 0 200px,
+    url(https://i.ibb.co/g9pr0Ld/clouds1000-b.png) 0px 300px,
+    url(https://i.ibb.co/NYpgsBj/clouds1000-blur-b.png) 0px 300px;
+  animation: wind 300s linear infinite;
+  z-index: -1; /*damit hintergrund hinter content ist*/
+}
+
+@keyframes wind { /*für animation der wolken*/
+  0% {
+    background-position: 0 200px, 0 300px, 100px 250px;
+  }
+  100% {
+    background-position: 1000px 200px, 1200px 300px, 1100px 250px;
+  }
+}
+
+.inhalt { /*inhalt über hintergrund*/
+  position: relative;
+  margin-top: 100px;
+  z-index: 1;
+}
+/* seite
+* {
+  text-align: center;
+} */
+
+.buttons {
+     margin-top: 150px;
+
+     display: flex;
+    flex-wrap: wrap; 
+    justify-content: center; 
+    text-align: center;
+   /* overflow-y: auto;
+    max-height: calc(100vh - 300px); */
+}
+
+.buttons a{
+    margin: 10px;
+    width: calc(16.66% - 20px);
+}
+
+
+/* buttons */
+.defaultButton {
+  background-color: #d9cbdccd;
+  text-decoration: none;
+  border: 5px solid black;
+  border-radius: 15px;
+}
+
+.nav {
+      /*display: flex;
+      align-items: center;
+      justify-content: space-between;*/
+      margin-bottom: 20px;
+    }
+
+    .nav button {
+      background-color: #e1a6c5;
+      color: rgb(31, 30, 30);
+      padding: 10px 20px;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      border-radius: 10px;
+    }
+
+
+/*animationsversuche*/
+.wolkPartsAnim {
+    position: relative;
+    display: block;
+    height: 100%;
+ 
+}
+
+.wolkBtnAnim-inner {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 0;
+   border-radius: 15px;
+
+}
+
+.wolkenPart {
+    position: absolute;
+    top: 0;
+    width: 25%;
+    height: 100%;
+    background: #e1a6c5;
+    border-radius: 100%;
+    transform: translate3d(0,150%,0) scale(1.7);
+    transition: transform .45s;
+}
+
+/*für animation der buttons, hover animation */
+.wolkenPart:nth-child(1) {
+    left: 0;
+    transition-delay: 0s;
+}
+
+.wolkenPart:nth-child(2) {
+    left: 30%;
+    transition-delay: 80ms;
+}
+
+.wolkenPart:nth-child(3) {
+    left: 60%;
+    transition-delay: .16s;
+}
+
+.wolkenPart:nth-child(4) {
+    left: 90%;
+    transition-delay: .24s;
+}
+
+
+.wolkBtnAnim:hover .wolkenPart { /*buttons animation*/
+    transform: translate3d(0,0%,0) scale(1.7);
+}
+
+.wolkBtnAnim:hover {
+    opacity: 1;
+    border-color: #f39e59;
+}
+
+span.buttonInhalt {
+    z-index: 10;
+    position: relative;
+    color: rgb(28, 28, 28);
+    font-weight: bold;
+}
+
+.wolkBtnAnim{
+    position: relative;
+    top: -80px;
+    border:none;
+    padding:10px 50px;
+
+}
+
+
+.dropdown {
+      position: relative;
+      display: inline-block;
+      cursor:default;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 160px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+    }
+
+    .dropdown-content a {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      cursor: pointer;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #ddd;
+      border-radius: 10px;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    margin-top: 10px;
+    left: -1px;
+    border-radius: 10px;
+    cursor: pointer;
+
+    }
+
+
+    /*------------------------responsive-------------------------------------------------------*/
+    @media screen and (max-width: 500px) {
+
+    .buttons {
+     margin-top: 80px;
+    }
+    body{
+    background-color: #C982BE;
+   /* color:linear-gradient(to bottom, #C982BE 20%, #ca8bc1 20%, #cc98c4 20%, #cdadc8 20%);*/
+}
+}
+
+    </style>
+</head>
+
+    <body>
+        <div class="container">
+            <div id="wolkenHintergrund"></div>
+          
+            <div class="inhalt">
+                <div class="nav">
+                    <div class="dropdown"  style="padding: 20px;">
+                        
+                        <div class="defaultButton wolkBtnAnim dropbtn" >
+                            <span class="buttonInhalt"  >Ansicht</span>
+                            <span class="wolkBtnAnim-inner">
+                                <span class="wolkPartsAnim">
+                                    <span class="wolkenPart"></span>
+                                    <span class="wolkenPart"></span>
+                                    <span class="wolkenPart"></span>
+                                    <span class="wolkenPart"></span>
+                                </span>
+                            </span>
+                        
+                        <div class="dropdown-content">
+                            <a href="woechentlich.html">Wöchentlich</a>
+                            <a href="monatlich.html" >Monatlich</a>
+                        </div>
+                    </div>
+                </div>
+                <section class="buttons">
+                <a class="defaultButton wolkBtnAnim" href="ue1.html">
+                    <span class="buttonInhalt">Übung 1</span>
+                    <span class="wolkBtnAnim-inner">
+                        <span class="wolkPartsAnim">
+                            <span class="wolkenPart"></span>
+                            <span class="wolkenPart"></span>
+                            <span class="wolkenPart"></span>
+                            <span class="wolkenPart"></span>
+                        </span>
+                    </span>
+                </a>
+            
+                <a class="defaultButton wolkBtnAnim" href="ue2.html">
+                    <span class="buttonInhalt">Übung 2</span>
+                    <span class="wolkBtnAnim-inner">
+                        <span class="wolkPartsAnim">
+                            <span class="wolkenPart"></span>
+                            <span class="wolkenPart"></span>
+                            <span class="wolkenPart"></span>
+                            <span class="wolkenPart"></span>
+                        </span>
+                    </span>
+                </a>
+
+                <a class="defaultButton wolkBtnAnim" href="ue3.html">
+                    <span class="buttonInhalt">Übung 3</span>
+                    <span class="wolkBtnAnim-inner">
+                        <span class="wolkPartsAnim">
+                            <span class="wolkenPart"></span>
+                            <span class="wolkenPart"></span>
+                            <span class="wolkenPart"></span>
+                            <span class="wolkenPart"></span>
+                        </span>
+                    </span>
+                </a>
+
+                <a class="defaultButton wolkBtnAnim" href="ue4.html">
+                    <span class="buttonInhalt">Übung 4</span>
+                    <span class="wolkBtnAnim-inner">
+                        <span class="wolkPartsAnim">
+                            <span class="wolkenPart"></span>
+                            <span class="wolkenPart"></span>
+                            <span class="wolkenPart"></span>
+                            <span class="wolkenPart"></span>
+                        </span>
+                    </span>
+                </a>
+
+                <a class="defaultButton wolkBtnAnim" href="ue5.html">
+                    <span class="buttonInhalt">Übung 5</span>
+                    <span class="wolkBtnAnim-inner">
+                        <span class="wolkPartsAnim">
+                            <span class="wolkenPart"></span>
+                            <span class="wolkenPart"></span>
+                            <span class="wolkenPart"></span>
+                            <span class="wolkenPart"></span>
+                        </span>
+                    </span>
+                </a>
+
+                <a class="defaultButton wolkBtnAnim" href="ue6.html">
+                    <span class="buttonInhalt">Übung 6</span>
+                    <span class="wolkBtnAnim-inner">
+                        <span class="wolkPartsAnim">
+                            <span class="wolkenPart"></span>
+                            <span class="wolkenPart"></span>
+                            <span class="wolkenPart"></span>
+                            <span class="wolkenPart"></span>
+                        </span>
+                    </span>
+                </a>
+
+                <a class="defaultButton wolkBtnAnim" href="ue7.html">
+                    <span class="buttonInhalt">Übung 7</span>
+                    <span class="wolkBtnAnim-inner">
+                        <span class="wolkPartsAnim">
+                            <span class="wolkenPart"></span>
+                            <span class="wolkenPart"></span>
+                            <span class="wolkenPart"></span>
+                            <span class="wolkenPart"></span>
+                        </span>
+                    </span>
+                </a>
+
+                <a class="defaultButton wolkBtnAnim" href="ue8.html">
+                    <span class="buttonInhalt">Übung 8</span>
+                    <span class="wolkBtnAnim-inner">
+                        <span class="wolkPartsAnim">
+                            <span class="wolkenPart"></span>
+                            <span class="wolkenPart"></span>
+                            <span class="wolkenPart"></span>
+                            <span class="wolkenPart"></span>
+                        </span>
+                    </span>
+                </a>
+
+                <a class="defaultButton wolkBtnAnim" href="ue9.html">
+                    <span class="buttonInhalt">Übung 9</span>
+                    <span class="wolkBtnAnim-inner">
+                        <span class="wolkPartsAnim">
+                            <span class="wolkenPart"></span>
+                            <span class="wolkenPart"></span>
+                            <span class="wolkenPart"></span>
+                            <span class="wolkenPart"></span>
+                        </span>
+                    </span>
+                </a>
+
+                <a class="defaultButton wolkBtnAnim" href="ue10.html">
+                    <span class="buttonInhalt">Übung 10</span>
+                    <span class="wolkBtnAnim-inner">
+                        <span class="wolkPartsAnim">
+                            <span class="wolkenPart"></span>
+                            <span class="wolkenPart"></span>
+                            <span class="wolkenPart"></span>
+                            <span class="wolkenPart"></span>
+                        </span>
+                    </span>
+                </a>
+
+                <a class="defaultButton wolkBtnAnim" href="ue11.html">
+                    <span class="buttonInhalt">Übung 11</span>
+                    <span class="wolkBtnAnim-inner">
+                        <span class="wolkPartsAnim">
+                            <span class="wolkenPart"></span>
+                            <span class="wolkenPart"></span>
+                            <span class="wolkenPart"></span>
+                            <span class="wolkenPart"></span>
+                        </span>
+                    </span>
+                </a>
+
+                <a class="defaultButton wolkBtnAnim" href="ue12.html">
+                    <span class="buttonInhalt">Übung 12</span>
+                    <span class="wolkBtnAnim-inner">
+                        <span class="wolkPartsAnim">
+                            <span class="wolkenPart"></span>
+                            <span class="wolkenPart"></span>
+                            <span class="wolkenPart"></span>
+                            <span class="wolkenPart"></span>
+                        </span>
+                    </span>
+                </a>
+
+                <a class="defaultButton wolkBtnAnim" href="extras.html">
+                    <span class="buttonInhalt">Extras</span>
+                    <span class="wolkBtnAnim-inner">
+                        <span class="wolkPartsAnim">
+                            <span class="wolkenPart"></span>
+                            <span class="wolkenPart"></span>
+                            <span class="wolkenPart"></span>
+                            <span class="wolkenPart"></span>
+                        </span>
+                    </span>
+                </a>
+                </section>
+            </div>
+          </div>
+    </body>
+</html>
+        
+
+    
