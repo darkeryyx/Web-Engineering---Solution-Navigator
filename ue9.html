@@ -17,9 +17,11 @@
                 color: #333;
                 border: 1px solid #ccc;
                 cursor: pointer;
+                background-color: #e2b6ce;
+                border-radius: 10px;
               }
               & li:hover {
-                background-color: #eee;
+                background-color: #e493be;
               }
               & label {
                 cursor: pointer;
@@ -58,11 +60,6 @@
             </ul>
             </div>
         </nav>
-
-        
-       <!--<a href="ue8_1.html">Aufgabe 8.1</a>
-        <a href="ue8_2.html">Aufgabe 8.2</a>
-        <a href="ue8_3.html">Aufgabe 8.3</a>-->
         <hr>
     </header>
 
@@ -99,11 +96,6 @@
           </article>
         </section>
 
-
-
-
-
-
        <section>
           <input type="radio" name="article" id="article2"/>
           <article>
@@ -126,8 +118,6 @@
               </article3>
             </section>
 
-
-
 <section>
     <input type="radio" name="article2" id="article22"/>
     <article3>
@@ -135,16 +125,9 @@
         
 </article3>
 </section>
-
-    
+   
           </article>
         </section>
-
-
-
-
-
-
 
         <section>
         <input type="radio" name="article" id="article3"/>
@@ -174,95 +157,9 @@
       
 </article4>
 </section>
-
-
-       
         </article>
       </section>
-
-
-
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    </body>
-    <script>
-        function fetchData(file) {
-          return new Promise((resolve, reject) => {
-            const xhr = new XMLHttpRequest();
-            xhr.open('GET', file, true);
-            xhr.onreadystatechange = function () {
-              if (xhr.readyState === 4) {
-                if (xhr.status === 200) {
-                  resolve(xhr.responseText);
-                } else {
-                  reject(new Error(`Fetch fehlgeschlagen ${file}`));
-                }
-              }
-            };
-            xhr.send();
-          });
-        }
-    
-        function zsmfuegen(dA, dB) {
-          const outputDiv = document.getElementById('output');
-    
-          // beide parallel fetchen
-          const promiseA = fetchData(dA);
-          const promiseB = fetchData(dB);
-    
-          Promise.all([promiseA, promiseB])
-            .then(([inhaltA, inhaltB]) => {
-              const zA = inhaltA.split('\n');
-              const zB = inhaltB.split('\n');
-    
-              zA.forEach((a, index) => {
-                const b = zB[index] || ''; 
-                const concatenatedLine = a + ' ' + b;
-                const elem = document.createElement('p');
-                elem.textContent = concatenatedLine;
-                outputDiv.appendChild(elem);
-              });
-            })
-            .catch(error => {
-              console.error(error.message);
-            });
-        }
-    
-        zsmfuegen('http://localhost:8000/A.txt', 'http://localhost:8000/B.txt');
-      </script>
-    
+    </body>  
 </html>
         
 
