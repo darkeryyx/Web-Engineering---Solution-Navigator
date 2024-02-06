@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width-device-width, initial-scale=1.0">
+    <title>Interaktives ES6 Beispiel</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        #benutzerFormular {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            width: 200px;
+        }
+
+        button {
+            background:#e49ac2;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #e16aaa;
+        }
+
+        #ausgabe {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e9e9e9;
+            border-radius: 8px;
+            width: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <form id="benutzerFormular">
+        <input type="text" id="benutzerName" placeholder="Dein Name">
+        <input type="number" id="benutzerAlter" placeholder="Dein Alter">
+        <button type="submit">Absenden</button>
+    </form>
+
+    <div id="ausgabe"></div>
+    
+</body>
+
+    <!-- Import -->
+    <script type="module" src="main.js"></script>
+
+</html>
