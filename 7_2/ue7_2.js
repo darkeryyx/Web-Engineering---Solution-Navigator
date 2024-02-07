@@ -2,7 +2,7 @@ const fs = require('fs');
 
 
 // stoppworte holen
-const stoppWoerter = JSON.parse(fs.readFileSync('stopwords.json', 'utf8'));
+const stoppWoerter = JSON.parse(fs.readFileSync('7_2/stopwords.json', 'utf8'));
 
 async function haeufigsteWoerter(){
     try{
