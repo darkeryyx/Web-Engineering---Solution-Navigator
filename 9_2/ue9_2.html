@@ -84,7 +84,7 @@
 
     let daten;
     async function holen() {
-        request= await fetch('9_2/daten.json').catch(console.error);
+        request= await fetch('daten.json').catch(console.error);
              daten= await request.json();
         
         const map = new Map();
